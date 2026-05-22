@@ -29,5 +29,5 @@ We can use it in a single statement as well.
 print(f"{2 * 30})"  
 ```
 ## Output:
-```
+
 60
