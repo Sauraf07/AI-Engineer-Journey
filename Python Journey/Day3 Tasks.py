@@ -25,3 +25,22 @@ print(f"After union {union_set}")
 print(f"After intersection{intersection}")'''
 # =====================================================
 # Task 4
+'''studnt = [
+    {"name":"Saurav","marks":80},
+    {"name":"Anjali","marks":85},
+    {"name":"Priyam","marks":80}
+]
+print("Student names: ")
+for student in studnt:
+    print(student["name"])
+
+highest = studnt[0]
+for student in studnt:
+    if student["marks"]>highest["marks"]:
+        highest = student
+
+print(f"Highest Marks")
+print(f"Name : {highest["name"]}")
+print(f"Marks : {highest["marks"]}")'''
+# ========================================================
+# Task 5
