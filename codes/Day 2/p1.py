@@ -1,0 +1,8 @@
+# Task 1: Student Information System (Beginner)
+name = input("Enter your name: ")
+age = input("Enter your age: ")
+percentage = input("Enter your percentage: ")
+print("\nStudent Information:")
+print("Name:", name)
+print("Age:", age)
+print("Percentage:", percentage)
