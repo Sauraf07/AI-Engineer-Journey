@@ -1,385 +1,439 @@
-# 🚀 Day 2 — Python Logic Building
+# Day 2 - Python Data Types, Type Casting & Operators
 
-## 🎯 Goal of Day 2
+## 📅 AI/ML Engineer Roadmap - Phase 1
 
-Today’s goal is to:
-
-* Understand decision making in Python
-* Learn repetition using loops
-* Create reusable code using functions
-* Improve coding logic
-
-⚡ This is one of the most important days because logic building is the base of AI engineering too.
+Today I learned the fundamentals of Python Data Types, Type Casting, and Operators. These concepts are the building blocks of every Python program and are heavily used in Data Science, Machine Learning, and AI development.
 
 ---
 
-# 📚 Topics To Learn Today
+# 📌 Topics Covered
 
----
+## 1. Data Types in Python
 
-# 1️⃣ Conditional Statements (`if`, `elif`, `else`)
+Data types define the kind of value a variable can store.
 
-Conditional statements are used for decision making.
+### Integer (int)
 
-## Example
+```python
+age = 21
+print(age)
+print(type(age))
+```
 
-```python id="a1l7bz"
-age = 18
+Output:
 
-if age >= 18:
-    print("You can vote")
-else:
-    print("You cannot vote")
+```python
+21
+<class 'int'>
 ```
 
 ---
 
-## Learn
+### Float (float)
 
-* `if`
-* `elif`
-* `else`
-* Nested `if`
+```python
+price = 99.99
+print(type(price))
+```
 
----
+Output:
 
-## Practice Ideas
-
-* Age Checker
-* Largest of 3 Numbers
-* Even/Odd Checker
-* Positive/Negative Number
-
----
-
-## Resource
-
-* Python If Else Tutorial
-
----
-
-# 2️⃣ Loops
-
-Loops help repeat tasks automatically.
-
----
-
-## 🔁 `for` Loop
-
-```python id="hh0w3m"
-for i in range(5):
-    print(i)
+```python
+<class 'float'>
 ```
 
 ---
 
-## 🔄 `while` Loop
+### String (str)
 
-```python id="g6hh0m"
-count = 1
+```python
+name = "Sauraf"
+print(type(name))
+```
 
-while count <= 5:
-    print(count)
-    count += 1
+Output:
+
+```python
+<class 'str'>
 ```
 
 ---
 
-## Learn
+### Boolean (bool)
 
-* `range()`
-* Nested loops
-* Infinite loop concept
-* `break`
-* `continue`
+```python
+is_student = True
+print(type(is_student))
+```
 
----
+Output:
 
-## Practice Ideas
-
-* Print Tables
-* Sum of Numbers
-* Factorial
-* Star Patterns
-
----
-
-## Resource
-
-* Python Loops Tutorial
-
----
-
-# 3️⃣ Functions
-
-Functions help reuse code and make programs cleaner.
-
----
-
-## Example
-
-```python id="afgwmu"
-def greet():
-    print("Hello")
-
-greet()
+```python
+<class 'bool'>
 ```
 
 ---
 
-## Learn
+### Complex Number
 
-* Function creation
-* Parameters
-* `return` keyword
-* Default arguments
+```python
+num = 3 + 5j
+print(type(num))
+```
+
+Output:
+
+```python
+<class 'complex'>
+```
 
 ---
 
-## Example with Return
+# 📌 Type Casting
 
-```python id="8b1xwt"
-def add(a, b):
-    return a + b
+Type Casting means converting one data type into another.
 
-result = add(5, 3)
+## Integer to Float
+
+```python
+num = 10
+result = float(num)
+
+print(result)
+print(type(result))
+```
+
+Output:
+
+```python
+10.0
+<class 'float'>
+```
+
+---
+
+## Float to Integer
+
+```python
+num = 10.99
+result = int(num)
+
 print(result)
 ```
 
----
+Output:
 
-## Practice Ideas
-
-* Calculator Function
-* Area Calculator
-* Greeting Function
-
----
-
-## Resource
-
-* Python Functions Tutorial
-
----
-
-# 💻 Day 2 Practice Tasks
-
-Complete ALL of these.
-
----
-
-# 🟢 Beginner Tasks
-
----
-
-## Task 1 — Even or Odd
-
-Take a number from the user and check whether it is even or odd.
-
----
-
-## Task 2 — Largest Number
-
-Take 3 numbers and print the largest number.
-
----
-
-## Task 3 — Multiplication Table
-
-Print multiplication table of any number.
-
-### Example
-
-```bash id="5d5oee"
-Enter number: 5
-
-5 x 1 = 5
-5 x 2 = 10
+```python
+10
 ```
 
 ---
 
-## Task 4 — Sum of Numbers
+## Integer to String
 
-Find sum from 1 to 100 using loop.
+```python
+age = 21
+text = str(age)
 
----
+print(text)
+print(type(text))
+```
 
-## Task 5 — Factorial
+Output:
 
-Find factorial of a number.
-
-### Example
-
-```bash id="xopm40"
-5! = 120
+```python
+21
+<class 'str'>
 ```
 
 ---
 
-# 🟡 Intermediate Tasks
+## String to Integer
 
----
+```python
+number = "100"
+result = int(number)
 
-## Task 6 — Number Guessing Game
+print(result)
+print(type(result))
+```
 
-Computer stores a number.
+Output:
 
-User keeps guessing until correct.
-
-### Hints
-
-* Use loop
-* Use `if else`
-
----
-
-## Task 7 — Simple Calculator Function
-
-Create functions:
-
-```python id="cbggzg"
-add()
-subtract()
-multiply()
-divide()
+```python
+100
+<class 'int'>
 ```
 
 ---
 
-## Task 8 — Password Checker
+# 📌 Operators in Python
 
-Correct password stored in variable.
-
-User gets 3 attempts.
+Operators are used to perform operations on variables and values.
 
 ---
 
-## Task 9 — Prime Number Checker
+## Arithmetic Operators
 
-Check whether a number is prime.
+```python
+a = 10
+b = 5
 
----
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)
+print(a % b)
+print(a ** b)
+print(a // b)
+```
 
-## Task 10 — Fibonacci Series
+Output:
 
-Print Fibonacci series.
-
-### Example
-
-```bash id="n0gh2z"
-0 1 1 2 3 5 8
+```python
+15
+5
+50
+2.0
+0
+100000
+2
 ```
 
 ---
 
-# 🚀 Mini Project of the Day
+## Comparison Operators
 
-# 🎓 Student Grade Calculator
+```python
+a = 10
+b = 20
 
----
+print(a == b)
+print(a != b)
+print(a > b)
+print(a < b)
+print(a >= b)
+print(a <= b)
+```
 
-## Input
+Output:
 
-* Student marks
-
----
-
-## Output
-
-* Percentage
-* Grade
-
----
-
-## Example
-
-```bash id="m09yrw"
-90+  -> A
-80+  -> B
-70+  -> C
+```python
+False
+True
+False
+True
+False
+True
 ```
 
 ---
 
-## Use These Concepts
+## Logical Operators
 
-* Conditions
-* Loops
-* Functions
+```python
+x = True
+y = False
 
----
+print(x and y)
+print(x or y)
+print(not x)
+```
 
-# 📂 What To Upload on GitHub Today
+Output:
 
-Create folder:
-
-```bash id="j1pv7f"
-Day-02-Python-Logic
+```python
+False
+True
+False
 ```
 
 ---
 
-## Inside It
+## Assignment Operators
 
-* All practice programs
-* Mini project
-* `README.md`
+```python
+x = 10
 
----
+x += 5
+print(x)
 
-# 📝 README Example
+x -= 2
+print(x)
+```
 
-```md id="7eqr5z"
-# Day 2 - Python Logic Building
+Output:
 
-## Topics Covered
-- If Else
-- Loops
-- Functions
-
-## Projects
-- Number Guessing Game
-- Student Grade Calculator
+```python
+15
+13
 ```
 
 ---
 
-# 🧠 Important Concept for AI Career
+# 🚀 Mini Project 1: Simple Calculator
 
-Most AI beginners think:
+```python
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
 
-```bash id="a8i1yt"
-AI = Only Libraries
+print("Addition:", num1 + num2)
+print("Subtraction:", num1 - num2)
+print("Multiplication:", num1 * num2)
+print("Division:", num1 / num2)
 ```
 
-❌ Wrong.
+---
+
+# 🚀 Mini Project 2: BMI Calculator
+
+```python
+weight = float(input("Enter weight (kg): "))
+height = float(input("Enter height (m): "))
+
+bmi = weight / (height ** 2)
+
+print("Your BMI is:", round(bmi, 2))
+```
 
 ---
 
-# ✅ Reality
+# 🚀 Mini Project 3: Temperature Converter
 
-Strong logic + problem solving = Strong AI Engineer
+```python
+celsius = float(input("Enter temperature in Celsius: "))
 
-Today’s topics are building your thinking ability.
+fahrenheit = (celsius * 9/5) + 32
 
----
-
-# ✅ End of Day 2 Checklist
-
-* [ ] Learned Conditional Statements
-* [ ] Practiced Loops
-* [ ] Created Functions
-* [ ] Completed Beginner Tasks
-* [ ] Completed Intermediate Tasks
-* [ ] Built Student Grade Calculator
-* [ ] Uploaded Code to GitHub
-* [ ] Updated README.md
+print("Temperature in Fahrenheit:", fahrenheit)
+```
 
 ---
 
-# 🚀 Keep Building
+# 🎯 Practice Questions
 
-Every small coding problem improves your logic.
+### Easy
 
-And strong logic creates strong AI engineers 🔥
+1. Create variables of different data types and print their types.
+2. Convert an integer into a string.
+3. Convert a string into an integer.
+4. Find the square of a number.
+5. Calculate the remainder using `%`.
+
+### Medium
+
+6. Create a simple calculator.
+7. Calculate the area of a rectangle.
+8. Calculate simple interest.
+9. Convert Celsius to Fahrenheit.
+10. Convert kilometers to miles.
+
+---
+
+# 💡 Interview Questions
+
+### Q1. What are Python Data Types?
+
+Data types define the type of value stored in a variable.
+
+Examples:
+
+- int
+- float
+- str
+- bool
+- complex
+
+---
+
+### Q2. What is Type Casting?
+
+Type Casting is the process of converting one data type into another.
+
+Example:
+
+```python
+num = "100"
+print(int(num))
+```
+
+---
+
+### Q3. Difference Between `=` and `==`?
+
+| Operator | Meaning |
+|-----------|----------|
+| = | Assignment |
+| == | Comparison |
+
+Example:
+
+```python
+x = 10
+
+print(x == 10)
+```
+
+---
+
+### Q4. Difference Between `/` and `//`?
+
+| Operator | Result |
+|-----------|----------|
+| / | Float Division |
+| // | Floor Division |
+
+Example:
+
+```python
+print(10 / 3)
+print(10 // 3)
+```
+
+Output:
+
+```python
+3.3333
+3
+```
+
+---
+
+# 📚 Resources
+
+### Documentation
+
+https://docs.python.org/3/
+
+### Practice Platforms
+
+- HackerRank
+- LeetCode
+- CodeWars
+
+### YouTube
+
+- CodeWithHarry Python Course
+- Corey Schafer Python Tutorials
+- freeCodeCamp Python Full Course
+
+---
+
+# ✅ Day 2 Summary
+
+Today I learned:
+
+- Python Data Types
+- Type Casting
+- Arithmetic Operators
+- Comparison Operators
+- Logical Operators
+- Assignment Operators
+
+Projects Built:
+
+- Calculator
+- BMI Calculator
+- Temperature Converter
+
+Next Topic: Strings and String Operations 🚀
