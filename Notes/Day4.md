@@ -1,365 +1,384 @@
-# 🚀 Day 4 — File Handling + Exception Handling in Python
+# Day 4 - Lists and Tuples in Python 🐍
 
-## 🎯 Goal of Day 4
+Welcome to **Day 4** of my Python Learning Journey.
 
-Today is important because real AI applications constantly:
+Today I learned two of the most important data structures in Python:
 
-* Read files
-* Save data
-* Handle errors
-* Work with logs
-* Process documents
+- Lists
+- Tuples
 
-⚡ These concepts are used everywhere in AI engineering.
+These are used to store multiple values in a single variable and are heavily used in Data Science, Machine Learning, Web Development, and Automation.
 
 ---
 
-# 📚 Topics To Learn Today
+# 📚 Topics Covered
 
----
+## 1. Lists
 
-# 1️⃣ File Handling in Python
+A list is an ordered, mutable (changeable) collection of items.
 
-Understand:
+### Creating a List
 
-* Opening files
-* Reading files
-* Writing files
-* Appending data
-* Closing files
+```python
+fruits = ["Apple", "Banana", "Mango"]
+print(fruits)
+```
 
----
+### Output
 
-# 📂 Learn These Functions
-
----
-
-## 📖 Open File
-
-```python id="e2vx0g"
-file = open("notes.txt", "r")
+```python
+['Apple', 'Banana', 'Mango']
 ```
 
 ---
 
-## 📌 File Modes
+## Accessing List Elements
 
-```python id="u9v9ae"
-"r" → Read
-"w" → Write
-"a" → Append
-"x" → Create New File
+```python
+fruits = ["Apple", "Banana", "Mango"]
+
+print(fruits[0])
+print(fruits[1])
+```
+
+### Output
+
+```python
+Apple
+Banana
 ```
 
 ---
 
-## 📖 Read File
+## Modifying a List
 
-```python id="8wd4cr"
-file = open("notes.txt", "r")
+```python
+fruits = ["Apple", "Banana", "Mango"]
 
-print(file.read())
+fruits[1] = "Orange"
 
-file.close()
+print(fruits)
+```
+
+### Output
+
+```python
+['Apple', 'Orange', 'Mango']
 ```
 
 ---
 
-## ✍️ Write File
+## Adding Elements
 
-```python id="e0j8qj"
-file = open("notes.txt", "w")
+### append()
 
-file.write("Hello Boss")
+```python
+fruits = ["Apple", "Banana"]
 
-file.close()
+fruits.append("Mango")
+
+print(fruits)
+```
+
+### Output
+
+```python
+['Apple', 'Banana', 'Mango']
 ```
 
 ---
 
-## ➕ Append File
+## Removing Elements
 
-```python id="8sv8x3"
-file = open("notes.txt", "a")
+```python
+fruits = ["Apple", "Banana", "Mango"]
 
-file.write("\nNew line added")
+fruits.remove("Banana")
 
-file.close()
+print(fruits)
+```
+
+### Output
+
+```python
+['Apple', 'Mango']
 ```
 
 ---
 
-# 2️⃣ Using `with open()`
+## Useful List Methods
 
-## ⭐ VERY IMPORTANT
+| Method | Description |
+|----------|----------|
+| append() | Add item |
+| remove() | Remove item |
+| insert() | Insert item |
+| pop() | Remove by index |
+| sort() | Sort list |
+| reverse() | Reverse list |
+| len() | Length of list |
 
-Best practice:
+---
 
-```python id="s8v1ic"
-with open("notes.txt", "r") as file:
-    print(file.read())
+# 2. Tuples
+
+A tuple is an ordered, immutable (unchangeable) collection.
+
+### Creating a Tuple
+
+```python
+colors = ("Red", "Green", "Blue")
+
+print(colors)
+```
+
+### Output
+
+```python
+('Red', 'Green', 'Blue')
 ```
 
 ---
 
-## ✅ Why Use It?
+## Accessing Tuple Elements
 
-* Automatically closes file
-* Cleaner code
-* Used in real-world projects
+```python
+colors = ("Red", "Green", "Blue")
 
----
+print(colors[0])
+```
 
-# 3️⃣ Exception Handling
+### Output
 
-AI applications should not crash easily.
-
----
-
-## 📘 Learn
-
-* `try`
-* `except`
-* `finally`
-
----
-
-## 🛡️ Basic Example
-
-```python id="7m0h9x"
-try:
-    num = int(input("Enter number: "))
-    print(num)
-except:
-    print("Invalid input")
+```python
+Red
 ```
 
 ---
 
-## ⚠️ Multiple Exceptions
+## Tuple Cannot Be Modified
 
-```python id="5bqvpf"
-try:
-    a = 10 / 0
-except ZeroDivisionError:
-    print("Cannot divide by zero")
+```python
+colors = ("Red", "Green", "Blue")
+
+colors[1] = "Yellow"
+```
+
+### Output
+
+```python
+TypeError
+```
+
+Because tuples are immutable.
+
+---
+
+# List vs Tuple
+
+| Feature | List | Tuple |
+|----------|----------|----------|
+| Ordered | ✅ | ✅ |
+| Mutable | ✅ | ❌ |
+| Faster | ❌ | ✅ |
+| Syntax | [] | () |
+| Can Modify | ✅ | ❌ |
+
+---
+
+# Real World Example
+
+## Student Names Using List
+
+```python
+students = ["Rahul", "Amit", "Priya"]
+
+students.append("Anjali")
+
+print(students)
+```
+
+### Output
+
+```python
+['Rahul', 'Amit', 'Priya', 'Anjali']
 ```
 
 ---
 
-## 🔚 Finally Block
+## Days of Week Using Tuple
 
-```python id="o7m6el"
-try:
-    print("Hello")
-except:
-    print("Error")
-finally:
-    print("Program ended")
+```python
+days = (
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+)
+
+print(days)
+```
+
+Since days never change, tuple is a better choice.
+
+---
+
+# Mini Project 1: Student Marks System
+
+## Description
+
+Store student marks in a list and calculate:
+
+- Total Marks
+- Average Marks
+- Highest Marks
+- Lowest Marks
+
+### Code
+
+```python
+marks = [85, 90, 78, 92, 88]
+
+total = sum(marks)
+average = total / len(marks)
+
+print("Total Marks:", total)
+print("Average Marks:", average)
+print("Highest Marks:", max(marks))
+print("Lowest Marks:", min(marks))
+```
+
+### Output
+
+```python
+Total Marks: 433
+Average Marks: 86.6
+Highest Marks: 92
+Lowest Marks: 78
 ```
 
 ---
 
-# 4️⃣ Important Errors To Learn
+# Mini Project 2: Shopping Cart
 
-Understand these errors:
+## Description
 
-* `ValueError`
-* `ZeroDivisionError`
-* `FileNotFoundError`
-* `IndexError`
-* `KeyError`
+Create a simple shopping cart using lists.
 
----
+### Code
 
-# 💻 Practice Tasks (Must Do)
+```python
+cart = []
 
----
+cart.append("Laptop")
+cart.append("Mouse")
+cart.append("Keyboard")
 
-# 🟢 Task 1 — Read File
-
-Create:
-
-```bash id="84z0m5"
-data.txt
+print("Shopping Cart:")
+print(cart)
 ```
 
-Write some text manually.
+### Output
 
-Your Python program should:
-
-* Open file
-* Read content
-* Print content
-
----
-
-# 🟢 Task 2 — Notes Writer
-
-Program should:
-
-* Take note from user
-* Save into `notes.txt`
-
----
-
-# 🟢 Task 3 — Append Notes
-
-Program should:
-
-* Add new notes without deleting old notes
-
----
-
-# 🟢 Task 4 — Error Handling
-
-Take number input from user.
-
-Handle:
-
-* Invalid input
-
----
-
-# 🟢 Task 5 — Safe Calculator
-
-Make calculator with exception handling.
-
-Handle:
-
-* Divide by zero
-* Wrong input
-
----
-
-# 🟢 Task 6 — File Checker
-
-Ask user for filename.
-
-If file exists:
-
-* Read it
-
-Otherwise:
-
-* Show proper error message
-
----
-
-# 🚀 Mini Project (Important)
-
-# 📝 CLI Notes App
-
----
-
-## Features
-
-* Add note
-* View notes
-* Exit
-
----
-
-## Concepts Used
-
-* File handling
-* Exception handling
-* Loops
-* Functions
-
----
-
-# 📂 Folder Structure
-
-```bash id="9g8q3u"
-Day-4/
-│
-├── notes_app.py
-├── calculator.py
-├── file_reader.py
-├── notes.txt
-└── README.md
+```python
+Shopping Cart:
+['Laptop', 'Mouse', 'Keyboard']
 ```
 
 ---
 
-# 📤 What To Upload On GitHub Today
+# Practice Questions
 
-Upload:
+### Easy
 
-* All practice programs
-* Mini project
-* README.md
+1. Create a list of 5 fruits.
+2. Print the first and last fruit.
+3. Add a new fruit.
+4. Remove a fruit.
+5. Find length of list.
 
----
+### Medium
 
-# 📝 Commit Message
+6. Create a list of numbers.
+7. Find largest number.
+8. Find smallest number.
+9. Calculate sum of all numbers.
+10. Calculate average.
 
-```bash id="6u2m4f"
-Day 4 - File Handling and Exception Handling
-```
+### Tuple Practice
 
----
-
-# 📚 Resources
-
-## 📖 Python File Handling
-
-* Python File Handling Docs
-
----
-
-## ⚠️ Exception Handling
-
-* Python Errors and Exceptions
+11. Create a tuple of 5 colors.
+12. Print second color.
+13. Count number of items.
+14. Try modifying tuple and observe error.
 
 ---
 
-## 🎥 Video Resource
+# Interview Questions
 
-* CodeWithHarry Python Tutorial
+## What is a List?
 
----
-
-# 🎯 End Goal of Day 4
-
-By the end of today you should be able to:
-
-* Read/write files
-* Store user data
-* Handle errors safely
-* Build small terminal apps
+A list is an ordered and mutable collection used to store multiple items.
 
 ---
 
-# 🧠 Why This Matters for AI Engineering
+## What is a Tuple?
 
-These skills are heavily used later in:
-
-* RAG systems
-* Chat history management
-* AI memory systems
-* PDF processing
-* Vector DB storage
-* AI logging systems
+A tuple is an ordered and immutable collection.
 
 ---
 
-# ✅ End of Day 4 Checklist
+## Difference Between List and Tuple?
 
-* [ ] Learned File Handling
-* [ ] Practiced Reading/Writing Files
-* [ ] Used `with open()`
-* [ ] Learned Exception Handling
-* [ ] Handled Common Errors
-* [ ] Built CLI Notes App
-* [ ] Uploaded Code to GitHub
-* [ ] Updated README.md
+- Lists can be modified.
+- Tuples cannot be modified.
+- Tuples are faster and more memory efficient.
 
 ---
 
-# 🚀 Keep Building
+## When Should You Use Tuple?
 
-Real AI applications rely heavily on handling data and errors properly.
+Use tuples when data should not change, such as:
 
-Today’s skills are part of the foundation of every strong AI system 🔥
+- Days of week
+- Months
+- Coordinates
+- Configuration values
+
+---
+
+# Key Takeaways
+
+✅ Lists are mutable and flexible
+
+✅ Tuples are immutable and faster
+
+✅ Lists use []
+
+✅ Tuples use ()
+
+✅ Learned list operations
+
+✅ Built Student Marks System
+
+✅ Built Shopping Cart Project
+
+---
+
+# Day 4 Progress
+
+- [x] Learned Lists
+- [x] Learned Tuples
+- [x] Practiced List Methods
+- [x] Built Student Marks System
+- [x] Built Shopping Cart Project
+- [x] Solved Practice Questions
+
+## Connect With Me
+
+I'm currently on a journey to become an AI/ML Engineer and sharing my daily learning progress.
+
+⭐ Feel free to explore my repositories and follow my journey!  
