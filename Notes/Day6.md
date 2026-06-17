@@ -1,507 +1,482 @@
-# 🚀 Day 6 — Python Environment, Packages & APIs
+# Day 6 - Conditional Statements in Python
 
-## 🎯 Main Goal
+## 📌 Overview
 
-Learn how professional Python developers manage projects and use external libraries.
+Conditional statements allow a program to make decisions based on different conditions. They help control the flow of execution by running specific blocks of code only when certain conditions are met.
 
-By the end of today, you should be able to:
+Think of it like real life:
 
-* Create Virtual Environments
-* Install packages using pip
-* Understand `requirements.txt`
-* Use external libraries
-* Make API requests
-* Build a simple Weather App
+- If it is raining, take an umbrella.
+- If your age is 18 or above, you can vote.
+- If your exam score is above 90, you get an A grade.
 
----
+Python uses:
 
-# 📚 Topic 1: What is a Virtual Environment?
+- `if`
+- `elif`
+- `else`
 
-## ❓ Problem
-
-Imagine:
-
-### Project A needs:
-
-```txt
-pandas==1.5
-```
-
-### Project B needs:
-
-```txt
-pandas==2.2
-```
-
-Without a virtual environment, these versions can conflict with each other.
+to implement decision-making.
 
 ---
 
-## ✅ Solution
+# 🎯 Learning Objectives
 
-A Virtual Environment creates an isolated Python environment for each project.
+By the end of this lesson, you will be able to:
 
-This allows every project to have its own dependencies and package versions.
-
----
-
-# 🛠️ Topic 2: Creating a Virtual Environment
-
-## Create Project Folder
-
-```bash
-mkdir WeatherApp
-cd WeatherApp
-```
+- Understand conditional statements
+- Use `if`, `elif`, and `else`
+- Write decision-making programs
+- Use comparison operators
+- Use logical operators
+- Build small real-world projects
 
 ---
 
-## Create Virtual Environment
+# 🔹 Why Conditional Statements Matter
 
-```bash
-python -m venv venv
-```
+Conditional statements are used everywhere:
 
----
+- Login Systems
+- ATM Machines
+- E-commerce Websites
+- AI Applications
+- Chatbots
+- Recommendation Systems
 
-## Activate Environment
-
-### Windows
-
-```bash
-venv\Scripts\activate
-```
-
-### Mac/Linux
-
-```bash
-source venv/bin/activate
-```
+Without conditions, programs cannot make decisions.
 
 ---
 
-## Expected Output
+# 📚 Comparison Operators
 
-You should see:
+Comparison operators compare two values and return either `True` or `False`.
 
-```bash
-(venv)
-```
+| Operator | Meaning | Example |
+|-----------|---------|---------|
+| == | Equal To | x == y |
+| != | Not Equal To | x != y |
+| > | Greater Than | x > y |
+| < | Less Than | x < y |
+| >= | Greater Than or Equal To | x >= y |
+| <= | Less Than or Equal To | x <= y |
 
-before your terminal prompt.
-
----
-
-# 📦 Topic 3: pip
-
-## What is pip?
-
-`pip` = Python Package Manager
-
-Used to install and manage Python libraries.
-
----
-
-## Check Version
-
-```bash
-pip --version
-```
-
----
-
-## Install Package
-
-```bash
-pip install requests
-```
-
----
-
-## Install Multiple Packages
-
-```bash
-pip install numpy pandas matplotlib
-```
-
----
-
-## See Installed Packages
-
-```bash
-pip list
-```
-
----
-
-## Uninstall Package
-
-```bash
-pip uninstall package_name
-```
-
----
-
-# 📄 Topic 4: requirements.txt
-
-## Save Project Dependencies
-
-```bash
-pip freeze > requirements.txt
-```
-
----
-
-## Install Dependencies from File
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## Why is it Important?
-
-Almost every real-world Python project uses `requirements.txt` to share dependencies.
-
----
-
-# 🧠 Topic 5: Python Libraries You Must Know
-
----
-
-# 🔢 NumPy
-
-### Used For:
-
-* Arrays
-* Matrix Operations
-* Scientific Computing
-
----
-
-## Installation
-
-```bash
-pip install numpy
-```
-
----
-
-## Example
+### Example
 
 ```python
-import numpy as np
+age = 20
 
-arr = np.array([1, 2, 3])
-
-print(arr)
-```
-
----
-
-# 📊 Pandas
-
-### Used For:
-
-* Data Analysis
-* CSV Files
-* Data Cleaning
-
----
-
-## Installation
-
-```bash
-pip install pandas
-```
-
----
-
-## Example
-
-```python
-import pandas as pd
-
-data = {
-    "Name": ["Rahul", "Aman"],
-    "Age": [20, 22]
-}
-
-df = pd.DataFrame(data)
-
-print(df)
-```
-
----
-
-# 🌐 Requests
-
-### Used For:
-
-* Calling APIs
-* Fetching Data from Websites
-
----
-
-## Installation
-
-```bash
-pip install requests
-```
-
----
-
-## Example
-
-```python
-import requests
-
-response = requests.get(
-    "https://api.github.com"
-)
-
-print(response.status_code)
-```
-
----
-
-# 🔌 Topic 6: What is an API?
-
-API = Application Programming Interface
-
-Think of an API like a waiter in a restaurant.
-
-### Example Flow
-
-```txt
-You → Request Food
-Waiter → Takes Request
-Kitchen → Prepares Food
-Waiter → Returns Food
-```
-
-Similarly:
-
-```txt
-Your Program → Sends Request
-API → Processes Request
-API → Returns Data
-```
-
----
-
-# 📄 Topic 7: Understanding JSON
-
-Most APIs return data in JSON format.
-
----
-
-## Example JSON
-
-```json
-{
-  "name": "Sauraf",
-  "age": 21
-}
-```
-
----
-
-## Python Dictionary Equivalent
-
-```python
-data = {
-    "name": "Sauraf",
-    "age": 21
-}
-
-print(data["name"])
+print(age > 18)
 ```
 
 ### Output
 
-```txt
-Sauraf
+```python
+True
 ```
 
 ---
 
-# 💻 Practice Task 1 — API Request
+# 🔹 The if Statement
 
-Create:
+The `if` statement executes a block of code only if the condition is True.
+
+### Syntax
 
 ```python
-import requests
-
-response = requests.get(
-    "https://api.github.com"
-)
-
-print(response.status_code)
-print(response.json())
+if condition:
+    # code block
 ```
 
----
-
-## Observe
-
-* Status Code
-* JSON Response
-
----
-
-# 💻 Practice Task 2 — NumPy
-
-Install:
-
-```bash
-pip install numpy
-```
-
----
-
-Create:
+### Example
 
 ```python
-import numpy as np
+age = 20
 
-numbers = np.array([10, 20, 30, 40])
-
-print(numbers)
-print(numbers.mean())
+if age >= 18:
+    print("You are eligible to vote.")
 ```
 
----
-
-# 💻 Practice Task 3 — Pandas
-
-Install:
-
-```bash
-pip install pandas
-```
-
----
-
-Create:
+### Output
 
 ```python
-import pandas as pd
-
-students = {
-    "Name": ["A", "B", "C"],
-    "Marks": [80, 90, 75]
-}
-
-df = pd.DataFrame(students)
-
-print(df)
+You are eligible to vote.
 ```
 
 ---
 
-# 🌦️ Mini Project — Weather App
+# 🔹 The if-else Statement
 
-## Objective
+If the condition is True, the `if` block executes.
 
-Learn:
+Otherwise, the `else` block executes.
 
-* API Calls
-* JSON
-* requests Library
+### Syntax
 
----
+```python
+if condition:
+    # code
+else:
+    # code
+```
 
-## Features
+### Example
 
-User enters city name.
+```python
+age = 16
 
-Application fetches weather data from API.
+if age >= 18:
+    print("Eligible to vote")
+else:
+    print("Not eligible to vote")
+```
 
-Display:
+### Output
 
-* Temperature
-* Wind Speed
-* Weather Condition
-
----
-
-## Suggested API
-
-Open-Meteo API
-
----
-
-## Concepts Used
-
-* requests
-* JSON
-* Functions
-* User Input
-* API Integration
-
----
-
-# 📂 GitHub Task
-
-Create Repository:
-
-```txt
-Day-06-Python-Packages-APIs
+```python
+Not eligible to vote
 ```
 
 ---
 
-## Upload These Files
+# 🔹 The if-elif-else Statement
 
-```txt
-numpy_practice.py
-pandas_practice.py
-api_practice.py
-weather_app.py
-README.md
+Used when there are multiple conditions.
+
+### Syntax
+
+```python
+if condition1:
+    # code
+elif condition2:
+    # code
+else:
+    # code
+```
+
+### Example
+
+```python
+marks = 85
+
+if marks >= 90:
+    print("Grade A")
+elif marks >= 75:
+    print("Grade B")
+elif marks >= 60:
+    print("Grade C")
+else:
+    print("Fail")
+```
+
+### Output
+
+```python
+Grade B
 ```
 
 ---
 
-# ✅ Day 6 Deliverables
+# 🔹 Nested if Statements
 
-Before sleeping today, complete:
+An `if` statement inside another `if` statement.
 
-* [ ] Create Virtual Environment
-* [ ] Install NumPy
-* [ ] Install Pandas
-* [ ] Install Requests
-* [ ] Learn API Basics
-* [ ] Create 3 Practice Files
-* [ ] Build Weather App
-* [ ] Push Everything to GitHub
+### Example
 
----
+```python
+age = 20
+has_license = True
 
-# 🧠 Important Concept for AI Engineers
+if age >= 18:
+    if has_license:
+        print("You can drive.")
+```
 
-Most modern AI applications rely heavily on:
+### Output
 
-* APIs
-* External Packages
-* Cloud Services
-* LLM Integrations
-
-Understanding environments, packages, and APIs is a foundational skill for:
-
-* Machine Learning Engineers
-* AI Engineers
-* Backend Developers
-* Generative AI Developers
+```python
+You can drive.
+```
 
 ---
 
-# 🚀 End of Day 6
+# 🔹 Logical Operators
 
-Today you learned how real-world Python projects are structured and how applications communicate with external services.
+Logical operators combine multiple conditions.
 
-This is the beginning of building AI-powered applications that interact with APIs, databases, vector stores, and Large Language Models.
+## AND Operator
 
-> **Learn → Build → Share → Improve**
+Returns True if both conditions are True.
+
+```python
+age = 20
+citizen = True
+
+if age >= 18 and citizen:
+    print("Eligible to vote")
+```
+
+---
+
+## OR Operator
+
+Returns True if at least one condition is True.
+
+```python
+age = 16
+special_permission = True
+
+if age >= 18 or special_permission:
+    print("Access Granted")
+```
+
+---
+
+## NOT Operator
+
+Reverses the result.
+
+```python
+is_logged_in = False
+
+if not is_logged_in:
+    print("Please Login")
+```
+
+---
+
+# 🧠 Real-World Example 1: Voting Eligibility Checker
+
+```python
+age = int(input("Enter your age: "))
+
+if age >= 18:
+    print("You are eligible to vote.")
+else:
+    print("You are not eligible to vote.")
+```
+
+---
+
+# 🧠 Real-World Example 2: Grade Calculator
+
+```python
+marks = int(input("Enter marks: "))
+
+if marks >= 90:
+    print("Grade A")
+elif marks >= 80:
+    print("Grade B")
+elif marks >= 70:
+    print("Grade C")
+elif marks >= 60:
+    print("Grade D")
+else:
+    print("Fail")
+```
+
+---
+
+# 🧠 Real-World Example 3: Login System
+
+```python
+username = input("Username: ")
+password = input("Password: ")
+
+if username == "admin" and password == "1234":
+    print("Login Successful")
+else:
+    print("Invalid Credentials")
+```
+
+---
+
+# 🚀 Hands-On Exercises
+
+### Beginner
+
+1. Check if a number is positive or negative.
+2. Check if a number is even or odd.
+3. Check if a person can vote.
+4. Find the largest of two numbers.
+5. Find the smallest of two numbers.
+
+### Intermediate
+
+6. Grade Calculator
+7. BMI Category Checker
+8. Login System
+9. ATM Withdrawal Validation
+10. Age Category Checker
+
+### Advanced
+
+11. Electricity Bill Calculator
+12. Tax Calculator
+13. Scholarship Eligibility Checker
+14. Movie Ticket Pricing System
+15. Student Result Management System
+
+---
+
+# 💼 Mini Project: Grade Calculator
+
+### Requirements
+
+- Take marks as input.
+- Display grade.
+- Handle invalid marks.
+
+### Solution
+
+```python
+marks = int(input("Enter Marks: "))
+
+if marks < 0 or marks > 100:
+    print("Invalid Marks")
+elif marks >= 90:
+    print("Grade A")
+elif marks >= 80:
+    print("Grade B")
+elif marks >= 70:
+    print("Grade C")
+elif marks >= 60:
+    print("Grade D")
+else:
+    print("Fail")
+```
+
+---
+
+# 🎤 Python Interview Questions
+
+## Basic Level
+
+### 1. What is a conditional statement?
+
+A conditional statement allows a program to make decisions based on conditions.
+
+---
+
+### 2. What are the conditional statements available in Python?
+
+- if
+- if-else
+- if-elif-else
+- Nested if
+
+---
+
+### 3. What is the difference between if and if-else?
+
+`if` executes code only when the condition is True.
+
+`if-else` provides an alternative block when the condition is False.
+
+---
+
+### 4. What does elif mean?
+
+`elif` stands for "else if" and is used to check multiple conditions.
+
+---
+
+### 5. What happens if multiple conditions are True?
+
+Python executes only the first matching condition.
+
+---
+
+## Intermediate Level
+
+### 6. What is a nested if statement?
+
+An if statement inside another if statement.
+
+---
+
+### 7. What are logical operators?
+
+Operators used to combine conditions:
+
+- and
+- or
+- not
+
+---
+
+### 8. Difference between == and = ?
+
+`=` is an assignment operator.
+
+```python
+x = 5
+```
+
+`==` is a comparison operator.
+
+```python
+x == 5
+```
+
+---
+
+### 9. What is short-circuit evaluation?
+
+Python stops evaluating conditions once the final result is known.
+
+Example:
+
+```python
+True or some_expensive_function()
+```
+
+The function will not execute.
+
+---
+
+### 10. Can we use multiple elif statements?
+
+Yes.
+
+```python
+if condition1:
+    pass
+elif condition2:
+    pass
+elif condition3:
+    pass
+else:
+    pass
+```
+
+---
+
+# 📝 Key Takeaways
+
+✅ Conditional statements help programs make decisions.
+
+✅ Python provides:
+
+- if
+- if-else
+- if-elif-else
+- nested if
+
+✅ Comparison operators return True or False.
+
+✅ Logical operators help combine conditions.
+
+✅ Conditional statements are heavily used in real-world applications like authentication systems, AI applications, recommendation systems, and automation tools.
+
+---
+
+# 📅 Progress
+
+- [x] Learned Conditional Statements
+- [x] Practiced if, elif, else
+- [x] Built Voting Eligibility Checker
+- [x] Built Grade Calculator
+- [x] Solved Practice Problems
+
+**Day 6 Completed ✅**
