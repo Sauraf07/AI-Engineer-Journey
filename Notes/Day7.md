@@ -1,133 +1,133 @@
-# 🚀 Day 7 — Python Revision & Logic Strengthening
+# Day 7 - Python Loops (`for`, `while`, `break`, `continue`, `range()`)
 
-## 🎯 Goal of Day 7
+## 📌 Overview
 
-Today is a revision and practice day.
+Loops are used to execute a block of code repeatedly. Instead of writing the same code multiple times, loops help automate repetitive tasks efficiently.
 
-The goal is to:
+In Python, there are two main types of loops:
 
-* Revise Python fundamentals
-* Strengthen coding logic
-* Practice problem-solving
-* Build a mini project
-* Prepare for AI Fundamentals starting from Day 8
+1. `for` Loop
+2. `while` Loop
+
+Additionally, Python provides loop control statements:
+
+- `break`
+- `continue`
+
+And a built-in function:
+
+- `range()`
 
 ---
 
-# 📚 Topics to Learn & Revise
+# 🎯 Learning Objectives
+
+By the end of Day 7, I can:
+
+- Understand the purpose of loops.
+- Use `for` loops to iterate over sequences.
+- Use `while` loops for condition-based repetition.
+- Control loop execution using `break` and `continue`.
+- Generate sequences using `range()`.
+- Solve real-world programming problems using loops.
 
 ---
 
-# 1️⃣ Python Fundamentals Revision
+# 🔹 Why Loops Matter
 
-Make sure you're comfortable with:
+Loops are one of the most important programming concepts because they help:
 
-## Variables & Data Types
+- Process large amounts of data.
+- Automate repetitive tasks.
+- Build games and applications.
+- Work with files and databases.
+- Implement AI/ML algorithms efficiently.
 
-* `int`
-* `float`
-* `string`
-* `boolean`
+---
 
-### Example
+# 🔹 The `for` Loop
+
+A `for` loop is used to iterate over a sequence such as a list, string, tuple, or range.
+
+## Syntax
 
 ```python
-name = "Sauraf"
-age = 20
-is_student = True
+for item in sequence:
+    # code block
 ```
 
----
-
-## Input & Output
+## Example
 
 ```python
-name = input("Enter name: ")
-print(name)
-```
-
----
-
-## Type Conversion
-
-```python
-age = int(input("Enter age: "))
-```
-
----
-
-# 2️⃣ Operators
-
-## Arithmetic Operators
-
-```python
-+
--
-*
-/
-%
-**
-//
-```
-
----
-
-## Comparison Operators
-
-```python
-==
-!=
->
-<
->=
-<=
-```
-
----
-
-## Logical Operators
-
-```python
-and
-or
-not
-```
-
----
-
-# 3️⃣ Conditional Statements
-
-### Example
-
-```python
-if age >= 18:
-    print("Adult")
-else:
-    print("Minor")
-```
-
----
-
-## Practice
-
-* Voting Eligibility Checker
-* Grade Calculator
-* Largest of 3 Numbers
-
----
-
-# 4️⃣ Loops
-
-## For Loop
-
-```python
-for i in range(1, 11):
+for i in range(5):
     print(i)
 ```
 
+### Output
+
+```text
+0
+1
+2
+3
+4
+```
+
 ---
 
-## While Loop
+# 🔹 Loop Through a String
+
+```python
+name = "Python"
+
+for char in name:
+    print(char)
+```
+
+### Output
+
+```text
+P
+y
+t
+h
+o
+n
+```
+
+---
+
+# 🔹 Loop Through a List
+
+```python
+fruits = ["Apple", "Banana", "Mango"]
+
+for fruit in fruits:
+    print(fruit)
+```
+
+### Output
+
+```text
+Apple
+Banana
+Mango
+```
+
+---
+
+# 🔹 The `while` Loop
+
+A `while` loop runs as long as a condition remains true.
+
+## Syntax
+
+```python
+while condition:
+    # code block
+```
+
+## Example
 
 ```python
 count = 1
@@ -137,338 +137,348 @@ while count <= 5:
     count += 1
 ```
 
+### Output
+
+```text
+1
+2
+3
+4
+5
+```
+
 ---
 
-## Practice
-
-* Multiplication Table
-* Factorial
-* Prime Number Checker
-
----
-
-# 5️⃣ Functions
-
-### Example
+# 🔹 Infinite Loop
 
 ```python
-def greet(name):
-    print("Hello", name)
-
-greet("Sauraf")
+while True:
+    print("Hello")
 ```
 
----
-
-## Learn
-
-* Parameters
-* Return Values
+⚠️ This loop runs forever until manually stopped.
 
 ---
 
-## Practice
+# 🔹 `break` Statement
 
-* Calculator Functions
-* Area Calculator
+The `break` statement immediately exits the loop.
 
----
-
-# 6️⃣ Data Structures
-
-## Lists
+## Example
 
 ```python
-fruits = ["Apple", "Mango"]
+for i in range(10):
+    if i == 5:
+        break
+    print(i)
+```
+
+### Output
+
+```text
+0
+1
+2
+3
+4
 ```
 
 ---
 
-## Tuples
+# 🔹 `continue` Statement
+
+The `continue` statement skips the current iteration and moves to the next one.
+
+## Example
 
 ```python
-data = (1, 2, 3)
+for i in range(6):
+    if i == 3:
+        continue
+    print(i)
+```
+
+### Output
+
+```text
+0
+1
+2
+4
+5
 ```
 
 ---
 
-## Sets
+# 🔹 `range()` Function
+
+The `range()` function generates a sequence of numbers.
+
+## Example 1
 
 ```python
-nums = {1, 2, 3}
+for i in range(5):
+    print(i)
+```
+
+### Output
+
+```text
+0
+1
+2
+3
+4
 ```
 
 ---
 
-## Dictionaries
+## Example 2
 
 ```python
-student = {
-    "name": "Sauraf",
-    "age": 20
-}
+for i in range(1, 6):
+    print(i)
+```
+
+### Output
+
+```text
+1
+2
+3
+4
+5
 ```
 
 ---
 
-## Practice
-
-* Student Record System
-* Contact Book
-
----
-
-# 7️⃣ File Handling
-
-### Example
+## Example 3
 
 ```python
-with open("notes.txt", "w") as file:
-    file.write("Hello")
+for i in range(0, 10, 2):
+    print(i)
+```
+
+### Output
+
+```text
+0
+2
+4
+6
+8
 ```
 
 ---
 
-## Learn
+# 🔹 Real-World Example
 
-* `read()`
-* `write()`
-* `append()`
-
----
-
-## Practice
-
-* Notes Application
-
----
-
-# 8️⃣ Exception Handling
-
-### Example
+## ATM Login Attempts
 
 ```python
-try:
-    num = int(input())
-except ValueError:
-    print("Invalid Input")
+attempts = 3
+
+while attempts > 0:
+    pin = input("Enter PIN: ")
+
+    if pin == "1234":
+        print("Login Successful")
+        break
+
+    attempts -= 1
+    print("Wrong PIN")
+
+print("Account Locked")
 ```
 
 ---
 
-## Practice
+# 🛠️ Practice Exercises
 
-* Safe Calculator
+## Beginner
 
----
-
-# 9️⃣ OOP Basics
-
-### Class & Object
+### 1. Print Numbers 1 to 10
 
 ```python
-class Student:
-    def __init__(self, name):
-        self.name = name
-
-s1 = Student("Sauraf")
+for i in range(1, 11):
+    print(i)
 ```
 
 ---
 
-## Learn
+### 2. Print Even Numbers
 
-* Class
-* Object
-* Constructor
-* Inheritance
-
----
-
-# 🔟 Git & GitHub Revision
-
-## Commands
-
-```bash
-git init
-git status
-git add .
-git commit -m "first commit"
-git push
-git pull
+```python
+for i in range(2, 21, 2):
+    print(i)
 ```
 
 ---
 
-## Understand
+### 3. Print Multiplication Table
 
-* Repository
-* Commit
-* Push
-* Pull
-* Branch
+```python
+num = int(input("Enter number: "))
 
----
-
-# 💻 Day 7 Practice Questions
-
-Solve these without looking at notes:
-
-### Task 1
-
-Reverse a string.
-
-### Task 2
-
-Find largest number in a list.
-
-### Task 3
-
-Count vowels in a string.
-
-### Task 4
-
-Check palindrome.
-
-### Task 5
-
-Find factorial using a function.
-
-### Task 6
-
-Create a student marks dictionary.
-
-### Task 7
-
-Save notes in a file.
-
-### Task 8
-
-Read notes from a file.
-
-### Task 9
-
-Build a number guessing game.
-
-### Task 10
-
-Build a simple calculator using functions.
-
----
-
-# 🚀 Day 7 Mini Project
-
-# 📝 CLI To-Do Application
-
-## Features
-
-1. Add Task
-2. View Tasks
-3. Delete Task
-4. Exit
-
----
-
-## Concepts Used
-
-* Lists
-* Functions
-* Loops
-* File Handling
-* Exception Handling
-
----
-
-# 📦 Day 7 Deliverables
-
-By the end of today, you should have:
-
-* ✅ 10 Practice Questions Solved
-* ✅ To-Do App Completed
-* ✅ Code Pushed to GitHub
-* ✅ README Written
-* ✅ Notes Prepared
-
----
-
-# ⭐ Extra Challenge (Highly Recommended)
-
-Create the following GitHub structure:
-
-```bash
-AI-Engineer-Journey/
-│
-├── Python/
-│   ├── Day1/
-│   ├── Day2/
-│   ├── Day3/
-│   └── Day7/
-│
-├── Notes/
-│
-├── Projects/
-│   └── Todo_App/
-│
-└── README.md
+for i in range(1, 11):
+    print(num * i)
 ```
 
 ---
 
-# 🧠 Why This Day Matters
+# 🚀 Mini Project: Number Guessing Game
 
-Day 7 is not about learning new concepts.
+## Problem Statement
 
-It is about strengthening:
+Create a game where:
 
-* Python Fundamentals
-* Problem Solving
-* Logic Building
-* Coding Confidence
+- User guesses a secret number.
+- Program checks the guess.
+- Game ends when correct answer is found.
 
-These skills are the foundation of:
+## Solution
 
-* Machine Learning
-* Deep Learning
-* Generative AI
-* Agentic AI
+```python
+secret_number = 7
 
----
+while True:
+    guess = int(input("Guess the number: "))
 
-# 🚀 What's Next?
+    if guess == secret_number:
+        print("Congratulations! You guessed correctly.")
+        break
 
-## Day 8 — AI Fundamentals
-
-Tomorrow you'll begin your AI journey with:
-
-* AI vs ML
-* Machine Learning Basics
-* Deep Learning Introduction
-* Generative AI
-* Real-World AI Applications
-
-This is where the AI Engineer journey truly begins. 🔥
+    print("Try Again!")
+```
 
 ---
 
-# ✅ End of Day 7 Checklist
+# 🧠 Interview Questions
 
-* [ ] Revised Python Fundamentals
-* [ ] Revised Operators
-* [ ] Revised Conditional Statements
-* [ ] Revised Loops
-* [ ] Revised Functions
-* [ ] Revised Data Structures
-* [ ] Revised File Handling
-* [ ] Revised Exception Handling
-* [ ] Revised OOP Basics
-* [ ] Revised Git & GitHub
-* [ ] Solved 10 Practice Questions
-* [ ] Completed To-Do Application
-* [ ] Updated GitHub Repository
-* [ ] Prepared Notes
+## Basic Level
+
+### 1. What is a loop?
+
+A loop is a programming structure that repeatedly executes a block of code until a condition is met.
 
 ---
 
-# 🚀 Motto
+### 2. What are the types of loops in Python?
 
-> **Learn → Practice → Build → Share → Improve**
+- `for` loop
+- `while` loop
+
+---
+
+### 3. When should you use a `for` loop?
+
+Use a `for` loop when the number of iterations is known.
+
+---
+
+### 4. When should you use a `while` loop?
+
+Use a `while` loop when iterations depend on a condition.
+
+---
+
+### 5. What does `range()` do?
+
+`range()` generates a sequence of numbers.
+
+Example:
+
+```python
+range(5)
+```
+
+Output:
+
+```text
+0, 1, 2, 3, 4
+```
+
+---
+
+## Intermediate Level
+
+### 6. What is the difference between `break` and `continue`?
+
+| break | continue |
+|---------|---------|
+| Stops the loop completely | Skips current iteration |
+| Exits loop | Continues loop |
+
+---
+
+### 7. What is an infinite loop?
+
+A loop that never stops because its condition always remains true.
+
+Example:
+
+```python
+while True:
+    print("Infinite")
+```
+
+---
+
+### 8. Can a `for` loop be nested?
+
+Yes.
+
+Example:
+
+```python
+for i in range(3):
+    for j in range(3):
+        print(i, j)
+```
+
+---
+
+### 9. What is loop nesting?
+
+Using one loop inside another loop.
+
+---
+
+### 10. What is the time complexity of a simple loop?
+
+A loop running `n` times has:
+
+```text
+O(n)
+```
+
+time complexity.
+
+---
+
+# 📚 Key Takeaways
+
+- `for` loops iterate over sequences.
+- `while` loops run based on conditions.
+- `break` exits the loop.
+- `continue` skips an iteration.
+- `range()` generates sequences of numbers.
+- Loops are fundamental for automation, AI, ML, and software development.
+
+---
+
+# 🎯 Day 7 Completion Checklist
+
+- [ ] Learned `for` loops
+- [ ] Learned `while` loops
+- [ ] Practiced `break`
+- [ ] Practiced `continue`
+- [ ] Understood `range()`
+- [ ] Built Number Guessing Game
+- [ ] Solved 10+ loop-based problems
+- [ ] Uploaded code to GitHub
+
+## 🔥 Progress
+
+✅ Day 7 Completed  
+🚀 Moving Towards AI/ML & GenAI Engineering Journey
