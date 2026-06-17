@@ -1,401 +1,400 @@
-# 🚀 Day 5 — OOPs in Python (Object-Oriented Programming)
+# Day 5 - Python Dictionaries and Sets
 
-## 🎯 Goal of Day 5
+> Part of my AI/ML & Generative AI Engineering Journey 🚀
 
-Today’s goal is to understand how real-world things are represented in code.
+## 📅 Day 5 Goals
 
-This is VERY important because:
+Today I learned two powerful Python data structures:
 
-* AI Applications
-* Backend Systems
-* APIs
-* Frameworks
-* LangChain
-* Agent Systems
+- Dictionaries (`dict`)
+- Sets (`set`)
 
-…all use OOP concepts heavily.
+These data structures are widely used in real-world applications such as databases, APIs, machine learning, data processing, and AI systems.
 
 ---
 
-# 📚 Topics To Learn Today
+# 📖 Dictionary in Python
 
----
+A dictionary is a collection of key-value pairs.
 
-# 1️⃣ What is OOP?
+### Syntax
 
-Object-Oriented Programming (OOP) is a way to structure code using:
+```python
+student = {
+    "name": "Saurav",
+    "age": 21,
+    "course": "BCA"
+}
+```
 
-* Classes
-* Objects
+### Accessing Values
 
----
+```python
+student = {
+    "name": "Saurav",
+    "age": 21
+}
 
-## 🧠 Real-Life Example
+print(student["name"])
+```
 
-```bash id="t9n7wo"
-Car = Class
-BMW Car = Object
+### Output
+
+```python
+Saurav
 ```
 
 ---
 
-# 2️⃣ Class and Object
+## Adding New Items
 
-Learn:
+```python
+student = {
+    "name": "Saurav"
+}
 
-* How to create a class
-* How to create objects
+student["city"] = "Indore"
 
----
+print(student)
+```
 
-## Example
+### Output
 
-```python id="8gwq3m"
-class Student:
-    name = "Sauraf"
-
-s1 = Student()
-print(s1.name)
+```python
+{'name': 'Saurav', 'city': 'Indore'}
 ```
 
 ---
 
-## Understand
+## Updating Values
 
-* `Student` → Class
-* `s1` → Object
-
----
-
-# 3️⃣ Constructor (`__init__`)
-
-Learn how objects get initialized automatically.
-
----
-
-## Example
-
-```python id="k0jlwm"
-class Student:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-
-s1 = Student("Sauraf", 20)
-
-print(s1.name)
-print(s1.age)
+```python
+student["city"] = "Bhopal"
 ```
 
 ---
 
-## Understand
+## Removing Items
 
-* `self`
-* Constructor
-* Instance Variables
-
----
-
-# 4️⃣ Instance Variables vs Class Variables
-
-Learn the difference between:
-
-* Variables inside constructor
-* Variables shared by all objects
-
----
-
-## Example
-
-```python id="g7p6o1"
-class Student:
-    college = "BCA College"
-
-    def __init__(self, name):
-        self.name = name
+```python
+student.pop("city")
 ```
 
 ---
 
-# 5️⃣ Methods in Class
+## Useful Dictionary Methods
 
-Methods are functions inside classes.
+| Method | Description |
+|----------|-------------|
+| keys() | Returns all keys |
+| values() | Returns all values |
+| items() | Returns key-value pairs |
+| get() | Safely gets value |
+| pop() | Removes item |
 
----
+### Example
 
-## Example
+```python
+student = {
+    "name": "Saurav",
+    "age": 21
+}
 
-```python id="f4kg0f"
-class Student:
-    def __init__(self, name):
-        self.name = name
-
-    def greet(self):
-        print("Hello", self.name)
-
-s1 = Student("Sauraf")
-s1.greet()
+print(student.keys())
+print(student.values())
 ```
 
 ---
 
-# 6️⃣ Encapsulation
+# 🎯 Real-Life Example
 
-Learn:
+Imagine a student record system.
 
-* Hiding internal data
-* Private variables
+```python
+student = {
+    "id": 101,
+    "name": "Saurav",
+    "course": "BCA",
+    "marks": 89
+}
 
-Basic understanding is enough for now.
-
----
-
-## Example
-
-```python id="8v4g8k"
-class Bank:
-    def __init__(self):
-        self.__balance = 1000
+print(student)
 ```
 
 ---
 
-# 7️⃣ Inheritance (VERY IMPORTANT)
+# 📖 Sets in Python
 
-One class can inherit another class.
+A set is an unordered collection of unique values.
 
----
+### Syntax
 
-## Example
-
-```python id="g34woj"
-class Animal:
-    def sound(self):
-        print("Animal makes sound")
-
-class Dog(Animal):
-    def bark(self):
-        print("Dog barks")
-
-d = Dog()
-d.sound()
-d.bark()
+```python
+numbers = {1, 2, 3, 4}
 ```
 
 ---
 
-## Understand
+## Why Use Sets?
 
-* Parent Class
-* Child Class
+Sets automatically remove duplicate values.
 
----
+### Example
 
-# 8️⃣ Polymorphism (Basic Only)
+```python
+numbers = {1, 2, 3, 3, 4, 4, 5}
 
-Same function behaves differently.
+print(numbers)
+```
 
----
+### Output
 
-## Example
-
-```python id="h6m67q"
-class Dog:
-    def sound(self):
-        print("Bark")
-
-class Cat:
-    def sound(self):
-        print("Meow")
+```python
+{1, 2, 3, 4, 5}
 ```
 
 ---
 
-# 💻 Practice Tasks (Must Do)
+## Adding Elements
+
+```python
+numbers.add(10)
+```
 
 ---
 
-# 🟢 Easy Tasks
+## Removing Elements
 
-## Task 1 — Create a Car Class
-
-Create:
-
-* Brand
-* Model
-* Display Function
+```python
+numbers.remove(2)
+```
 
 ---
 
-## Task 2 — Create a Mobile Class
+## Useful Set Methods
 
-Create:
-
-* Brand
-* Price
-* Display Function
+| Method | Description |
+|----------|-------------|
+| add() | Adds item |
+| remove() | Removes item |
+| union() | Combines sets |
+| intersection() | Common values |
+| difference() | Unique values |
 
 ---
 
-## Task 3 — Create a Student Class
+## Union Example
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+print(a.union(b))
+```
+
+### Output
+
+```python
+{1, 2, 3, 4, 5}
+```
+
+---
+
+## Intersection Example
+
+```python
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+print(a.intersection(b))
+```
+
+### Output
+
+```python
+{2, 3}
+```
+
+---
+
+# 🛠 Project 1: Phonebook Application
+
+### Problem Statement
+
+Create a simple phonebook using dictionaries.
+
+### Solution
+
+```python
+phonebook = {}
+
+phonebook["Rahul"] = "9876543210"
+phonebook["Amit"] = "9123456789"
+
+print(phonebook)
+```
+
+### Output
+
+```python
+{
+    'Rahul': '9876543210',
+    'Amit': '9123456789'
+}
+```
+
+---
+
+# 🛠 Project 2: Word Frequency Counter
+
+### Problem Statement
+
+Count how many times each word appears.
+
+### Solution
+
+```python
+text = "python is easy and python is powerful"
+
+words = text.split()
+
+frequency = {}
+
+for word in words:
+    frequency[word] = frequency.get(word, 0) + 1
+
+print(frequency)
+```
+
+### Output
+
+```python
+{
+    'python': 2,
+    'is': 2,
+    'easy': 1,
+    'and': 1,
+    'powerful': 1
+}
+```
+
+---
+
+# 💡 Interview Questions
+
+### 1. What is a Dictionary?
+
+A dictionary is a collection of key-value pairs.
+
+---
+
+### 2. Are Dictionary Keys Unique?
+
+Yes.
+
+Duplicate keys are not allowed.
+
+---
+
+### 3. What is the Difference Between List and Dictionary?
+
+| List | Dictionary |
+|--------|------------|
+| Uses index | Uses key |
+| Ordered | Key-value structure |
+| Faster for sequential data | Faster for lookups |
+
+---
+
+### 4. What is a Set?
+
+A set is an unordered collection of unique values.
+
+---
+
+### 5. Why Use Sets?
+
+To remove duplicates and perform mathematical operations like union and intersection.
+
+---
+
+# 🧠 Practice Questions
+
+### Easy
+
+1. Create a dictionary of your personal information.
+2. Add a new key-value pair.
+3. Update an existing value.
+4. Remove a key.
+5. Print all keys.
+
+### Medium
+
+6. Count vowels in a string.
+7. Create a student marks system.
+8. Find duplicate elements using sets.
+9. Merge two dictionaries.
+10. Find common elements between two lists using sets.
+
+---
+
+# 🎯 Day 5 Assignment
+
+Build:
+
+### 1. Student Record System
 
 Features:
 
-* Name
-* Marks
-* Display Function
+- Add Student
+- Update Student
+- Delete Student
+- View Student
 
 ---
 
-# 🟡 Medium Tasks
-
----
-
-# 🏦 Task 1 — Bank System
-
-Create methods:
-
-```python id="v4vr6u"
-deposit()
-withdraw()
-check_balance()
-```
-
----
-
-## Concepts Used
-
-* Class
-* Object
-* Methods
-* Constructor
-
----
-
-# 👨‍💼 Task 2 — Employee Management System
+### 2. Contact Book
 
 Features:
 
-* Add Employee
-* Show Employee Details
+- Add Contact
+- Search Contact
+- Delete Contact
+- Show All Contacts
 
 ---
 
-# 🚀 Mini Project (Important)
+# 📚 Resources
 
-# 📚 Library Management System
+### Official Documentation
 
----
+- https://docs.python.org/3/tutorial/datastructures.html
 
-## Features
+### Practice Platforms
 
-* Add Book
-* Issue Book
-* Return Book
-* Show Available Books
-
----
-
-## This Project Will Strengthen
-
-* Classes
-* Objects
-* Methods
-* Lists
-* Logic Building
+- LeetCode
+- HackerRank
+- GeeksforGeeks
 
 ---
 
-# 📚 Resources To Learn
+# ✅ Day 5 Summary
+
+Today I learned:
+
+- Dictionaries
+- Dictionary Methods
+- Sets
+- Set Operations
+- Phonebook Application
+- Word Frequency Counter
+
+These concepts are fundamental for Data Analysis, Machine Learning, APIs, and Generative AI applications.
 
 ---
 
-# 🎥 YouTube
+## 🚀 Next Day
 
-* CodeWithHarry — OOP Python
-* Corey Schafer — OOP Playlist
+Day 6: Conditional Statements (`if`, `elif`, `else`) and Decision Making in Python.
 
----
-
-# 📖 Documentation
-
-* Python Classes Docs
-
----
-
-# 📂 Day 5 Assignment
-
-You must upload on GitHub:
-
-* 3 Practice Programs
-* Bank System Project
-* README Explaining Concepts Learned
-
----
-
-# ✅ Output Expected By End Of Day
-
-By tonight you should be able to:
-
-* ✅ Create Classes
-* ✅ Create Objects
-* ✅ Use Constructors
-* ✅ Write Methods
-* ✅ Understand Inheritance
-* ✅ Build Small OOP Projects
-
----
-
-# 🧠 Why OOP Matters for AI Engineering
-
-Most modern AI systems are built using OOP concepts.
-
-Examples:
-
-* LangChain
-* FastAPI
-* AI Agents
-* Backend APIs
-* Frameworks
-* Automation Systems
-
-Understanding OOP now will make advanced AI development much easier later.
-
----
-
-# 📂 Suggested GitHub Folder Structure
-
-```bash id="4e8o4m"
-Day-05-OOP-Python/
-│
-├── car_class.py
-├── mobile_class.py
-├── student_class.py
-├── bank_system.py
-├── employee_management.py
-├── library_management_system.py
-└── README.md
-```
-
----
-
-# ✅ End of Day 5 Checklist
-
-* [ ] Learned OOP Basics
-* [ ] Created Classes and Objects
-* [ ] Used Constructors
-* [ ] Created Methods
-* [ ] Learned Inheritance
-* [ ] Practiced Encapsulation
-* [ ] Built Bank System
-* [ ] Built Library Management System
-* [ ] Uploaded Everything to GitHub
-
----
-
-# 🚀 Keep Going
-
-Strong OOP skills = Strong Developer Foundation.
-
-And strong foundations create strong AI Engineers 🔥
+#Python #100DaysOfCode #AIEngineer #MachineLearning #GenerativeAI #PythonProgramming #LearningInPublic #GitHub
