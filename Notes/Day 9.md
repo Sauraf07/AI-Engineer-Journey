@@ -1,554 +1,710 @@
-# 🚀 Day 9 — NumPy Fundamentals
+# Day 9 – Advanced Functions in Python (`*args`, `**kwargs`, Lambda Functions)
 
-## 🎯 Goal of Today
-
-By the end of today, you should be able to:
-
-* Understand what NumPy is
-* Create and manipulate arrays
-* Perform mathematical operations efficiently
-* Understand why NumPy is used in AI/ML
+> Part of My AI/ML & Generative AI Engineering Journey 🚀
 
 ---
 
-# 📚 1. What is NumPy?
+# 📌 Day 9 Goals
 
-**NumPy (Numerical Python)** is a powerful Python library used for:
+By the end of this lesson, you will be able to:
 
-* Fast mathematical computations
-* Working with arrays and matrices
-* Data processing for Machine Learning models
+- Understand Python Functions deeply
+- Use `*args` for variable positional arguments
+- Use `**kwargs` for variable keyword arguments
+- Create anonymous functions using `lambda`
+- Know when to use normal functions vs lambda functions
+- Solve real-world problems using advanced functions
+- Answer common Python interview questions
 
 ---
 
-## Why Not Python Lists?
+# Why Learn Advanced Functions?
+
+Functions are one of the most important concepts in Python.
+
+In real-world applications, functions help:
+
+- Reduce code duplication
+- Improve code readability
+- Improve code reusability
+- Organize large projects
+- Build scalable applications
+
+Advanced functions are heavily used in:
+
+- Data Science
+- Machine Learning
+- Backend Development
+- Automation Scripts
+- APIs
+- AI Engineering
+
+---
+
+# 1. Functions Recap
+
+A function is a block of reusable code that performs a specific task.
+
+## Syntax
+
+```python
+def greet():
+    print("Hello World")
+```
+
+## Example
+
+```python
+def greet():
+    print("Welcome to Python")
+
+greet()
+```
+
+### Output
+
+```text
+Welcome to Python
+```
+
+---
+
+# 2. Function with Parameters
+
+Parameters allow functions to accept input values.
+
+## Example
+
+```python
+def greet(name):
+    print("Hello", name)
+
+greet("Sauraf")
+```
+
+### Output
+
+```text
+Hello Sauraf
+```
+
+---
+
+# 3. Function with Return Value
+
+Functions can return values using the `return` keyword.
+
+## Example
+
+```python
+def add(a, b):
+    return a + b
+
+result = add(10, 20)
+
+print(result)
+```
+
+### Output
+
+```text
+30
+```
+
+---
+
+# 4. What is *args?
+
+Sometimes we don't know how many arguments will be passed to a function.
+
+Python provides `*args`.
+
+`*args` allows multiple positional arguments.
+
+---
+
+## Example 1
+
+```python
+def numbers(*args):
+    print(args)
+
+numbers(1, 2, 3, 4)
+```
+
+### Output
+
+```text
+(1, 2, 3, 4)
+```
+
+Notice:
+
+`args` becomes a tuple.
+
+---
+
+## Example 2
+
+```python
+def total(*args):
+    return sum(args)
+
+print(total(10, 20))
+print(total(10, 20, 30))
+print(total(10, 20, 30, 40))
+```
+
+### Output
+
+```text
+30
+60
+100
+```
+
+---
+
+# Real-Life Example of *args
+
+Imagine a shopping cart.
+
+Different customers buy different numbers of items.
+
+```python
+def cart_total(*prices):
+    return sum(prices)
+
+print(cart_total(100, 200))
+print(cart_total(100, 200, 300))
+```
+
+### Output
+
+```text
+300
+600
+```
+
+---
+
+# 5. What is **kwargs?
+
+`**kwargs` allows multiple keyword arguments.
+
+It stores data in dictionary format.
+
+---
+
+## Example
+
+```python
+def student(**kwargs):
+    print(kwargs)
+
+student(
+    name="Sauraf",
+    age=21,
+    city="Indore"
+)
+```
+
+### Output
+
+```python
+{
+    'name': 'Sauraf',
+    'age': 21,
+    'city': 'Indore'
+}
+```
+
+---
+
+# Accessing kwargs Values
+
+```python
+def student(**kwargs):
+
+    for key, value in kwargs.items():
+        print(key, value)
+
+student(
+    name="Sauraf",
+    age=21,
+    city="Indore"
+)
+```
+
+### Output
+
+```text
+name Sauraf
+age 21
+city Indore
+```
+
+---
+
+# Real-Life Example of kwargs
+
+User registration form:
+
+```python
+def register_user(**user):
+
+    print("User Details")
+
+    for key, value in user.items():
+        print(key, value)
+
+register_user(
+    username="sauraf123",
+    email="abc@gmail.com",
+    city="Indore"
+)
+```
+
+---
+
+# Difference Between *args and **kwargs
+
+| Feature | *args | **kwargs |
+|----------|--------|---------|
+| Stores Data As | Tuple | Dictionary |
+| Accepts | Positional Arguments | Keyword Arguments |
+| Symbol | * | ** |
+| Example | 10,20,30 | name="John" |
+
+---
+
+# Using *args and **kwargs Together
+
+```python
+def display(*args, **kwargs):
+
+    print("Args:", args)
+    print("Kwargs:", kwargs)
+
+display(
+    10,
+    20,
+    30,
+    name="Sauraf",
+    city="Indore"
+)
+```
+
+### Output
+
+```python
+Args: (10, 20, 30)
+
+Kwargs: {
+    'name': 'Sauraf',
+    'city': 'Indore'
+}
+```
+
+---
+
+# 6. Lambda Functions
+
+A lambda function is a small anonymous function.
+
+Anonymous means:
+
+No function name.
+
+---
+
+## Normal Function
+
+```python
+def square(x):
+    return x * x
+
+print(square(5))
+```
+
+### Output
+
+```text
+25
+```
+
+---
+
+## Lambda Version
+
+```python
+square = lambda x: x * x
+
+print(square(5))
+```
+
+### Output
+
+```text
+25
+```
+
+---
+
+# Lambda Function Syntax
+
+```python
+lambda arguments : expression
+```
+
+---
+
+# Example 1
+
+```python
+add = lambda a, b: a + b
+
+print(add(10, 20))
+```
+
+### Output
+
+```text
+30
+```
+
+---
+
+# Example 2
+
+```python
+multiply = lambda a, b: a * b
+
+print(multiply(5, 6))
+```
+
+### Output
+
+```text
+30
+```
+
+---
+
+# Example 3
+
+Finding Larger Number
+
+```python
+largest = lambda a, b: a if a > b else b
+
+print(largest(50, 100))
+```
+
+### Output
+
+```text
+100
+```
+
+---
+
+# 7. Lambda with map()
+
+Used to transform data.
+
+## Example
 
 ```python
 numbers = [1, 2, 3, 4, 5]
-```
 
-Python lists are:
+squares = list(
+    map(
+        lambda x: x*x,
+        numbers
+    )
+)
 
-* Slower
-* Use more memory
-
-NumPy arrays are:
-
-✅ Faster
-
-✅ Memory Efficient
-
-✅ Optimized for Numerical Computations
-
----
-
-## Installation
-
-```bash
-pip install numpy
-```
-
----
-
-## Import NumPy
-
-```python
-import numpy as np
-```
-
----
-
-# 📚 2. Creating Arrays
-
-## 1D Array
-
-```python
-import numpy as np
-
-arr = np.array([1, 2, 3, 4, 5])
-
-print(arr)
-```
-
----
-
-## 2D Array
-
-```python
-arr = np.array([
-    [1, 2, 3],
-    [4, 5, 6]
-])
-
-print(arr)
-```
-
----
-
-# 📚 3. Array Attributes
-
-```python
-arr = np.array([
-    [1, 2, 3],
-    [4, 5, 6]
-])
-
-print(arr.shape)
-print(arr.ndim)
-print(arr.size)
-print(arr.dtype)
-```
-
----
-
-## Learn
-
-### shape
-
-Rows and Columns
-
-### ndim
-
-Number of Dimensions
-
-### size
-
-Total Number of Elements
-
-### dtype
-
-Data Type of Elements
-
----
-
-# 📚 4. Special Arrays
-
-## Zeros Matrix
-
-```python
-np.zeros((3, 3))
+print(squares)
 ```
 
 ### Output
-
-```python
-[[0. 0. 0.]
- [0. 0. 0.]
- [0. 0. 0.]]
-```
-
----
-
-## Ones Matrix
-
-```python
-np.ones((2, 4))
-```
-
----
-
-## Identity Matrix
-
-```python
-np.eye(3)
-```
-
-### Output
-
-```python
-[[1. 0. 0.]
- [0. 1. 0.]
- [0. 0. 1.]]
-```
-
----
-
-# 📚 5. Range Functions
-
-## arange()
-
-```python
-np.arange(1, 11)
-```
-
-### Output
-
-```python
-[1 2 3 4 5 6 7 8 9 10]
-```
-
----
-
-## linspace()
-
-```python
-np.linspace(0, 100, 5)
-```
-
-### Output
-
-```python
-[  0.  25.  50.  75. 100.]
-```
-
----
-
-# 📚 6. Reshape Arrays
-
-```python
-arr = np.arange(1, 13)
-
-new_arr = arr.reshape(3, 4)
-
-print(new_arr)
-```
-
-### Output
-
-```python
-[[ 1  2  3  4]
- [ 5  6  7  8]
- [ 9 10 11 12]]
-```
-
----
-
-# 📚 7. Indexing and Slicing
-
-```python
-arr = np.array([10, 20, 30, 40, 50])
-
-print(arr[0])
-print(arr[2])
-```
-
----
-
-## Slicing
-
-```python
-print(arr[1:4])
-```
-
-### Output
-
-```python
-[20 30 40]
-```
-
----
-
-## 2D Array Access
-
-```python
-arr = np.array([
-    [1, 2, 3],
-    [4, 5, 6]
-])
-
-print(arr[0, 1])
-```
-
-### Output
-
-```python
-2
-```
-
----
-
-# 📚 8. Mathematical Operations
-
-```python
-a = np.array([1, 2, 3])
-b = np.array([4, 5, 6])
-
-print(a + b)
-print(a - b)
-print(a * b)
-print(a / b)
-```
-
----
-
-# 📚 9. Aggregation Functions
-
-```python
-arr = np.array([10, 20, 30, 40, 50])
-
-print(arr.sum())
-print(arr.mean())
-print(arr.max())
-print(arr.min())
-```
-
-### Important for Machine Learning
-
-* Sum
-* Mean
-* Maximum
-* Minimum
-
----
-
-# 📚 10. Random Numbers
-
-## Random Float Values
-
-```python
-np.random.rand(5)
-```
-
----
-
-## Random Integers
-
-```python
-np.random.randint(1, 100, 10)
-```
-
-### Output
-
-10 random numbers between 1 and 100.
-
----
-
-# 📚 11. Broadcasting
-
-```python
-arr = np.array([1, 2, 3])
-
-print(arr + 10)
-```
-
-### Output
-
-```python
-[11 12 13]
-```
-
-NumPy automatically applies operations to every element.
-
-This feature is called **Broadcasting**.
-
----
-
-# 🤖 Why AI Engineers Use NumPy
-
-Machine Learning models work heavily with:
-
-* Vectors
-* Matrices
-* Tensors
-
-Example Matrix:
 
 ```text
-1 2 3
-4 5 6
-7 8 9
+[1, 4, 9, 16, 25]
 ```
-
-Almost every Machine Learning algorithm performs operations on matrices like these.
-
-NumPy makes these operations:
-
-* Fast
-* Efficient
-* Scalable
 
 ---
 
-# 💻 Today's Practical Tasks
+# 8. Lambda with filter()
 
-## Task 1
+Used to filter data.
 
-Create:
+## Example
 
 ```python
-[5, 10, 15, 20, 25]
+numbers = [1,2,3,4,5,6]
+
+even = list(
+    filter(
+        lambda x: x % 2 == 0,
+        numbers
+    )
+)
+
+print(even)
 ```
 
-using NumPy.
+### Output
+
+```text
+[2, 4, 6]
+```
 
 ---
 
-## Task 2
-
-Create a:
+# 9. Lambda with sorted()
 
 ```python
-3 x 3
+students = [
+
+    ("Rahul", 80),
+    ("Aman", 95),
+    ("Sauraf", 90)
+
+]
+
+students.sort(
+    key=lambda x: x[1]
+)
+
+print(students)
 ```
 
-matrix of zeros.
-
----
-
-## Task 3
-
-Create numbers from:
+### Output
 
 ```python
-1 - 50
+[
+ ('Rahul', 80),
+ ('Sauraf', 90),
+ ('Aman', 95)
+]
 ```
-
-using `arange()`.
 
 ---
 
-## Task 4
-
-Create a:
+# Mini Project: Student Marks Analyzer
 
 ```python
-4 x 4
+def average(*marks):
+
+    return sum(marks) / len(marks)
+
+print(
+    average(
+        85,
+        90,
+        95,
+        80
+    )
+)
 ```
 
-identity matrix.
+### Output
+
+```text
+87.5
+```
 
 ---
 
-## Task 5
+# Practice Questions
 
-Generate:
+## Easy
 
+1. Create a function that accepts unlimited numbers and returns their sum.
+2. Create a function using kwargs to store employee information.
+3. Create a lambda function for square.
+4. Create a lambda function for cube.
+5. Find largest of two numbers using lambda.
+
+---
+
+## Intermediate
+
+6. Use map() with lambda to double all numbers.
+7. Use filter() with lambda to find odd numbers.
+8. Sort a list of tuples using lambda.
+9. Build a student result calculator using args.
+10. Build a registration form using kwargs.
+
+---
+
+# Interview Questions
+
+## Beginner Level
+
+### 1. What is a function?
+
+A reusable block of code that performs a specific task.
+
+---
+
+### 2. What is the difference between parameter and argument?
+
+Parameter → Variable in function definition.
+
+Argument → Actual value passed to function.
+
+---
+
+### 3. What is return keyword?
+
+Used to send a value back from a function.
+
+---
+
+### 4. What is *args?
+
+Allows a function to accept multiple positional arguments.
+
+---
+
+### 5. What is **kwargs?
+
+Allows a function to accept multiple keyword arguments.
+
+---
+
+### 6. What data type does args use?
+
+Tuple.
+
+---
+
+### 7. What data type does kwargs use?
+
+Dictionary.
+
+---
+
+### 8. What is a lambda function?
+
+A small anonymous one-line function.
+
+---
+
+### 9. Why use lambda functions?
+
+For short and simple operations.
+
+---
+
+### 10. Difference between function and method?
+
+Function:
 ```python
-20 random numbers
+print()
 ```
 
-between:
-
+Method:
 ```python
-1 - 100
+name.upper()
 ```
 
 ---
 
-## Task 6
+# Frequently Asked Interview Questions
 
-Find:
+### Explain *args with example.
 
-* Sum
-* Mean
-* Max
-* Min
+### Explain **kwargs with example.
 
-of:
+### Difference between args and kwargs.
 
-```python
-[10,20,30,40,50]
-```
+### What is lambda function?
 
----
+### When should lambda be avoided?
 
-## Task 7
+### Can lambda contain multiple expressions?
 
-Create numbers:
+Answer:
+No.
 
-```python
-1 - 16
-```
+### Difference between lambda and normal function.
 
-and reshape them into a:
+### Why is lambda used with map() and filter()?
 
-```python
-4 x 4
-```
+### What is anonymous function?
 
-matrix.
+### Explain positional and keyword arguments.
 
 ---
 
-# 🚀 Mini Project (Must Do)
+# Day 9 Assignment
 
-# 🎓 Student Marks Analyzer
+Build:
 
-```python
-marks = np.array([
-    75, 80, 65, 90, 88,
-    70, 95, 60, 85, 78
-])
-```
+### Project 1
 
----
+Student Result Analyzer
 
-## Find
+Features:
 
-* Highest Marks
-* Lowest Marks
-* Average Marks
-* Total Marks
-* Students Scoring Above 80
+- Accept unlimited marks using args
+- Calculate average
+- Find highest marks
 
 ---
 
-# 📝 Revision Questions
+### Project 2
 
-### 1. What is NumPy?
+Employee Registration System
 
-### 2. Difference between Python List and NumPy Array?
+Features:
 
-### 3. What is `shape`?
-
-### 4. What is `reshape()`?
-
-### 5. Difference between `arange()` and `linspace()`?
-
-### 6. What is Broadcasting?
-
-### 7. Why is NumPy Important in AI?
+- Use kwargs
+- Store employee details
+- Display formatted output
 
 ---
 
-# 📂 GitHub Folder Structure
+### Project 3
 
-```bash
-Day-09-NumPy-Fundamentals/
-│
-├── task1_array_creation.py
-├── task2_zero_matrix.py
-├── task3_arange.py
-├── task4_identity_matrix.py
-├── task5_random_numbers.py
-├── task6_aggregation.py
-├── task7_reshape.py
-├── student_marks_analyzer.py
-└── README.md
-```
+Lambda Practice Suite
+
+Create lambda functions for:
+
+- Square
+- Cube
+- Addition
+- Multiplication
+- Largest Number
 
 ---
 
-# ✅ End of Day 9 Checklist
+# Day 9 Summary
 
-* [ ] Installed NumPy
-* [ ] Learned Array Creation
-* [ ] Practiced Array Attributes
-* [ ] Used Special Arrays
-* [ ] Learned arange() and linspace()
-* [ ] Practiced Reshaping
-* [ ] Learned Indexing & Slicing
-* [ ] Performed Mathematical Operations
-* [ ] Used Aggregation Functions
-* [ ] Generated Random Numbers
-* [ ] Understood Broadcasting
-* [ ] Completed Practical Tasks
-* [ ] Built Student Marks Analyzer
-* [ ] Uploaded Everything to GitHub
+Today I Learned:
 
----
+- Functions
+- Return Values
+- *args
+- **kwargs
+- Lambda Functions
+- map()
+- filter()
+- sorted()
+- Real-world use cases of advanced functions
 
-# 🚀 AI Engineer Insight
+These concepts are heavily used in:
 
-> NumPy is the foundation of the entire Python AI ecosystem.
+- Machine Learning
+- Data Science
+- Backend Development
+- FastAPI
+- AI Engineering
+- Generative AI Applications
 
-Libraries like:
-
-* Pandas
-* Scikit-Learn
-* TensorFlow
-* PyTorch
-
-all rely heavily on NumPy under the hood.
-
-Master NumPy today, and Machine Learning becomes much easier tomorrow.
+✅ Day 9 Completed
+🚀 Moving Towards AI/ML Engineer Roadmap
