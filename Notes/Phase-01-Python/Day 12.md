@@ -1,426 +1,691 @@
-# 🚀 Day 12 — Statistics Fundamentals for AI/ML
+# Day 12 - Exception Handling in Python
 
-## 🎯 Goal
-
-Understand the statistics concepts used in:
-
-* Machine Learning
-* Data Science
-* Generative AI
-
-⚡ You do not need advanced mathematics right now. Focus on understanding the intuition behind each concept.
+> Phase 1: Programming Foundation  
+> Roadmap: AI/ML Engineer → GenAI Engineer → Agentic AI Engineer
 
 ---
 
-# 📚 Statistics Concepts
+# 🎯 Learning Objectives
+
+By the end of this day, you will be able to:
+
+- Understand why exceptions occur
+- Handle runtime errors gracefully
+- Use `try`, `except`, `else`, and `finally`
+- Handle multiple exceptions
+- Raise custom exceptions
+- Create robust and user-friendly applications
+- Build a calculator with proper error handling
+- Answer Python Exception Handling interview questions confidently
 
 ---
 
-# 1️⃣ Mean (Average)
+# 📌 What is Exception Handling?
 
-## What it tells you
+Exception Handling is a mechanism that allows a program to continue running even when unexpected errors occur.
 
-The central value of a dataset.
+Without exception handling, the program crashes immediately when an error occurs.
 
-### Example
-
-```text
-Marks = 70, 80, 90
-
-Mean = (70 + 80 + 90) / 3
-Mean = 80
-```
-
-### Real-Life AI Example
-
-If an AI model predicts house prices, the mean price helps understand the average market value.
-
----
-
-# 2️⃣ Median
-
-## What it tells you
-
-The middle value after sorting data.
-
-### Example
-
-```text
-10, 20, 30, 40, 1000
-
-Median = 30
-```
-
-### Why Important?
-
-The mean gets affected by outliers (extreme values), while the median does not.
-
-### Real-Life Example
-
-Most salaries may be ₹30,000–₹50,000, but a CEO earning ₹50 lakh can distort the average salary.
-
----
-
-# 3️⃣ Mode
-
-## What it tells you
-
-The most frequent value.
-
-### Example
-
-```text
-1, 2, 2, 3, 4, 2, 5
-
-Mode = 2
-```
-
-### Used In
-
-* Customer Purchase Analysis
-* Recommendation Systems
-* Market Basket Analysis
-
----
-
-# 4️⃣ Range
-
-## What it tells you
-
-Difference between maximum and minimum values.
-
-### Formula
-
-```text
-Range = Maximum - Minimum
-```
-
-### Example
-
-```text
-10, 20, 30, 40
-
-Range = 40 - 10
-Range = 30
-```
-
----
-
-# 5️⃣ Variance
-
-## What it tells you
-
-How spread out the data is.
-
-### High Variance
-
-* Data points are far apart
-
-### Low Variance
-
-* Data points are close together
-
-### Why AI Uses It
-
-* Understanding feature distribution
-* Data preprocessing
-* Feature engineering
-
-### Concept
-
-Variance measures the average squared distance from the mean.
-
----
-
-# 6️⃣ Standard Deviation
-
-## What it tells you
-
-Average spread of data around the mean.
-
-### Formula
-
-\sigma=\sqrt{Variance}
-
-### Interpretation
-
-* Small SD → Data clustered together
-* Large SD → Data spread out
-
-### Used Heavily In
-
-* ML preprocessing
-* Feature scaling
-* Anomaly detection
-* Data normalization
-
----
-
-# 7️⃣ Probability Basics
-
-## What it tells you
-
-Chance of an event occurring.
-
-### Example
-
-Coin Toss
-
-```text
-P(Head) = 1/2 = 0.5
-```
-
-### Used In
-
-* Spam Detection
-* Recommendation Systems
-* AI Predictions
-* Classification Models
-
----
-
-# 8️⃣ Normal Distribution (Bell Curve)
-
-## Most Important Statistical Concept in ML
-
-### Characteristics
-
-* Most values are near the center
-* Fewer values occur at the extremes
-* Forms a bell-shaped curve
-
-### Examples
-
-* Heights
-* Exam Scores
-* IQ Scores
-* Product Ratings
-
-### Understand
-
-* Mean
-* Standard Deviation
-* Bell Curve Shape
-
----
-
-# 9️⃣ Correlation
-
-## What it tells you
-
-Relationship between two variables.
-
-### Positive Correlation
-
-```text
-Study More → Marks Increase
-```
-
-### Negative Correlation
-
-```text
-Speed Increases → Travel Time Decreases
-```
-
-### No Correlation
-
-```text
-Shoe Size ↔ Intelligence
-```
-
-### Used In
-
-* Feature Selection
-* Data Analysis
-* Predictive Modeling
-
----
-
-# 🔟 Outliers
-
-## What they are
-
-Extremely unusual values in a dataset.
-
-### Example
-
-```text
-10, 12, 11, 13, 14, 500
-
-500 is an Outlier
-```
-
-### Why Important?
-
-* Can reduce ML model accuracy
-* Can bias results
-* Need detection and handling
-
----
-
-# 💻 Practical Coding Tasks
-
----
-
-## Task 1 — NumPy Statistics
-
-Calculate:
-
-* Mean
-* Median
-* Standard Deviation
-
-### Dataset
+### Example Without Exception Handling
 
 ```python
-marks = [75, 80, 85, 90, 95, 100]
+num = int(input("Enter a number: "))
+print(10 / num)
 ```
 
+### Input
+
+```text
+0
+```
+
+### Output
+
+```text
+ZeroDivisionError: division by zero
+```
+
+Program crashes.
+
 ---
 
-## Task 2 — Pandas Statistics
+# Why Exception Handling Matters
 
-Create a CSV file of student marks and calculate:
+Real-world applications must handle:
 
-* Mean
-* Median
-* Maximum
-* Minimum
+- Invalid user input
+- Missing files
+- Database failures
+- API failures
+- Network issues
+- Authentication errors
+
+Without exception handling:
+
+❌ Application crashes
+
+With exception handling:
+
+✅ Application continues running
 
 ---
 
-## Task 3 — Data Visualization
+# Common Python Exceptions
 
-Using Matplotlib create:
+| Exception | Description |
+|------------|-------------|
+| ValueError | Invalid value |
+| TypeError | Wrong data type |
+| ZeroDivisionError | Division by zero |
+| IndexError | Invalid index |
+| KeyError | Missing dictionary key |
+| FileNotFoundError | File does not exist |
+| AttributeError | Missing object attribute |
+| ImportError | Import failed |
 
-### Histogram
+---
+
+# The try Block
+
+Code that might produce an error is placed inside the `try` block.
 
 ```python
-marks = [60, 70, 75, 80, 85, 90, 95]
+try:
+    num = int(input("Enter number: "))
+    print(num)
+except:
+    print("Something went wrong")
 ```
 
-### Bar Chart
+---
+
+# The except Block
+
+Used to catch exceptions.
 
 ```python
-marks = [60, 70, 75, 80, 85, 90, 95]
+try:
+    num = int(input("Enter number: "))
+except:
+    print("Invalid Input")
+```
+
+### Input
+
+```text
+abc
+```
+
+### Output
+
+```text
+Invalid Input
 ```
 
 ---
 
-# 🚀 Mini Project — Student Performance Analyzer
+# Catch Specific Exceptions
 
-## Features
+Recommended approach.
 
-### Read CSV File
+```python
+try:
+    num = int(input("Enter number: "))
+    result = 10 / num
 
-* Load student data
+except ValueError:
+    print("Please enter valid integer")
 
-### Calculate Statistics
-
-* Mean
-* Median
-* Mode
-* Standard Deviation
-
-### Visualizations
-
-* Histogram
-* Bar Chart
-
-### Reporting
-
-* Generate summary report
-* Save results
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+```
 
 ---
 
-# 📂 GitHub Folder Structure
+# Multiple Exceptions
+
+```python
+try:
+    num = int(input("Enter number: "))
+    result = 100 / num
+
+except ValueError:
+    print("Invalid input")
+
+except ZeroDivisionError:
+    print("Division by zero not allowed")
+```
+
+---
+
+# Exception as Variable
+
+Capture error message.
+
+```python
+try:
+    num = int(input("Enter number: "))
+    result = 100 / num
+
+except Exception as e:
+    print("Error:", e)
+```
+
+---
+
+# The else Block
+
+Runs only if no exception occurs.
+
+```python
+try:
+    num = int(input("Enter number: "))
+    result = 100 / num
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+else:
+    print("Result:", result)
+```
+
+---
+
+# The finally Block
+
+Always executes.
+
+Used for:
+
+- Closing files
+- Closing database connections
+- Cleaning resources
+
+```python
+try:
+    num = int(input("Enter number: "))
+    result = 100 / num
+
+except:
+    print("Error occurred")
+
+finally:
+    print("Execution Completed")
+```
+
+Output:
+
+```text
+Execution Completed
+```
+
+always executes.
+
+---
+
+# Complete Flow
+
+```python
+try:
+    num = int(input("Enter number: "))
+    result = 100 / num
+
+except ValueError:
+    print("Invalid Number")
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+else:
+    print("Result:", result)
+
+finally:
+    print("Program Ended")
+```
+
+---
+
+# Raising Exceptions
+
+Sometimes we intentionally generate exceptions.
+
+```python
+age = int(input("Enter age: "))
+
+if age < 18:
+    raise ValueError("Age must be 18 or above")
+
+print("Eligible")
+```
+
+---
+
+# Custom Exceptions
+
+Create your own exceptions.
+
+```python
+class InvalidAgeError(Exception):
+    pass
+
+age = int(input("Enter age: "))
+
+if age < 18:
+    raise InvalidAgeError("Age too low")
+
+print("Eligible")
+```
+
+---
+
+# Practical Example 1
+
+## Safe Division Program
+
+```python
+try:
+    num1 = int(input("Enter First Number: "))
+    num2 = int(input("Enter Second Number: "))
+
+    result = num1 / num2
+
+except ValueError:
+    print("Please enter numbers only")
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+else:
+    print("Result:", result)
+
+finally:
+    print("Calculation Completed")
+```
+
+---
+
+# Practical Example 2
+
+## Safe List Access
+
+```python
+numbers = [10, 20, 30]
+
+try:
+    index = int(input("Enter index: "))
+    print(numbers[index])
+
+except IndexError:
+    print("Index out of range")
+
+except ValueError:
+    print("Enter valid number")
+```
+
+---
+
+# Practical Example 3
+
+## Safe Dictionary Access
+
+```python
+student = {
+    "name": "John",
+    "age": 20
+}
+
+try:
+    key = input("Enter key: ")
+    print(student[key])
+
+except KeyError:
+    print("Key does not exist")
+```
+
+---
+
+# Practical Example 4
+
+## File Handling Exception
+
+```python
+try:
+    file = open("data.txt", "r")
+    print(file.read())
+
+except FileNotFoundError:
+    print("File not found")
+
+finally:
+    print("Operation Completed")
+```
+
+---
+
+# Mini Project
+
+# Robust Calculator
+
+## Requirements
+
+- Addition
+- Subtraction
+- Multiplication
+- Division
+- Handle invalid input
+- Handle divide by zero
+- Continue running until user exits
+
+---
+
+## Solution
+
+```python
+while True:
+
+    try:
+        print("\n===== Calculator =====")
+        print("1. Add")
+        print("2. Subtract")
+        print("3. Multiply")
+        print("4. Divide")
+        print("5. Exit")
+
+        choice = int(input("Choose Option: "))
+
+        if choice == 5:
+            print("Goodbye!")
+            break
+
+        num1 = float(input("Enter First Number: "))
+        num2 = float(input("Enter Second Number: "))
+
+        if choice == 1:
+            print("Result:", num1 + num2)
+
+        elif choice == 2:
+            print("Result:", num1 - num2)
+
+        elif choice == 3:
+            print("Result:", num1 * num2)
+
+        elif choice == 4:
+            print("Result:", num1 / num2)
+
+        else:
+            print("Invalid Option")
+
+    except ValueError:
+        print("Please enter valid numbers")
+
+    except ZeroDivisionError:
+        print("Cannot divide by zero")
+
+    except Exception as e:
+        print("Unexpected Error:", e)
+```
+
+---
+
+# Practice Questions
+
+## Easy
+
+1. Handle ValueError while taking integer input.
+2. Handle ZeroDivisionError.
+3. Handle IndexError in a list.
+4. Handle KeyError in dictionary.
+5. Handle FileNotFoundError.
+
+---
+
+## Medium
+
+6. Build safe calculator.
+7. Build ATM simulator with exception handling.
+8. Create login validation system.
+9. Create file reader program.
+10. Create student record lookup system.
+
+---
+
+## Advanced
+
+11. Create custom exception.
+12. Create banking application.
+13. Create inventory management system.
+14. Create API error handler.
+15. Create exception logging system.
+
+---
+
+# Real World Use Cases
+
+## Banking Applications
+
+```python
+try:
+    withdraw(amount)
+except InsufficientBalance:
+    print("Insufficient Balance")
+```
+
+---
+
+## API Calls
+
+```python
+try:
+    response = requests.get(url)
+except requests.ConnectionError:
+    print("Network Error")
+```
+
+---
+
+## Database Connections
+
+```python
+try:
+    connect_database()
+except DatabaseError:
+    print("Database Offline")
+```
+
+---
+
+# Interview Questions
+
+## Beginner Level
+
+### 1. What is Exception Handling?
+
+Exception Handling is a technique used to manage runtime errors and prevent program crashes.
+
+---
+
+### 2. Why do we use Exception Handling?
+
+To handle unexpected errors gracefully and keep applications running.
+
+---
+
+### 3. What is an Exception?
+
+An exception is an event that interrupts normal program execution.
+
+---
+
+### 4. What is the difference between Syntax Error and Exception?
+
+| Syntax Error | Exception |
+|-------------|------------|
+| Occurs before execution | Occurs during execution |
+| Prevents program start | Happens while running |
+
+---
+
+### 5. What is try block?
+
+Contains code that may generate an exception.
+
+---
+
+### 6. What is except block?
+
+Handles exceptions generated in try block.
+
+---
+
+### 7. What is finally block?
+
+Always executes regardless of exception occurrence.
+
+---
+
+### 8. What is else block?
+
+Runs only if no exception occurs.
+
+---
+
+### 9. Can one try have multiple except blocks?
+
+Yes.
+
+---
+
+### 10. Can finally run without exception?
+
+Yes.
+
+---
+
+# Intermediate Level
+
+### 11. Difference between Exception and Error?
+
+Errors are serious issues while Exceptions can be handled.
+
+---
+
+### 12. What is Exception as e?
+
+Captures exception object.
+
+```python
+except Exception as e:
+    print(e)
+```
+
+---
+
+### 13. What is raising exception?
+
+Manually generating exception using `raise`.
+
+---
+
+### 14. What is custom exception?
+
+User-defined exception class.
+
+---
+
+### 15. Why use custom exceptions?
+
+To represent business-specific errors.
+
+---
+
+# Advanced Level
+
+### 16. What is exception propagation?
+
+Exceptions move up the call stack until handled.
+
+---
+
+### 17. What is exception hierarchy?
+
+Python exceptions are organized in inheritance tree.
+
+---
+
+### 18. Difference between BaseException and Exception?
+
+Exception is derived from BaseException.
+
+---
+
+### 19. Why avoid bare except?
+
+It catches every exception and hides bugs.
+
+Bad:
+
+```python
+except:
+    pass
+```
+
+Good:
+
+```python
+except ValueError:
+    print("Invalid input")
+```
+
+---
+
+### 20. Best Practices for Exception Handling
+
+✅ Catch specific exceptions
+
+✅ Use finally for cleanup
+
+✅ Use meaningful error messages
+
+✅ Avoid bare except
+
+✅ Log exceptions
+
+✅ Create custom exceptions when needed
+
+---
+
+# Day 12 Summary
+
+Today you learned:
+
+- Exception Handling
+- try block
+- except block
+- else block
+- finally block
+- Multiple exceptions
+- Custom exceptions
+- Raising exceptions
+- Real-world applications
+- Robust Calculator Project
+- Interview Questions
+
+---
+
+# GitHub Commit Message
 
 ```bash
-Day-12-Statistics/
-
-│
-├── numpy_statistics.py
-├── pandas_statistics.py
-├── histogram.py
-├── bar_chart.py
-├── student_performance_analyzer.py
-├── student_marks.csv
-├── charts/
-├── report.txt
-└── README.md
+git add .
+git commit -m "Day 12: Learned Python Exception Handling and Built Robust Calculator"
+git push origin main
 ```
 
----
+# 🚀 Next Day
 
-# 📚 Learning Resources
-
-## Statistics
-
-* StatQuest by Josh Starmer
-* Khan Academy Statistics
-
-## Practice
-
-* W3Schools NumPy
-* W3Schools Pandas
-* W3Schools Matplotlib
-
----
-
-# 🎯 Day 12 Deliverables
-
-By the end of today you should have:
-
-* ✅ Notes on Mean, Median, Mode
-* ✅ Notes on Variance and Standard Deviation
-* ✅ Notes on Probability
-* ✅ 3 Python Practice Programs
-* ✅ 1 Histogram
-* ✅ 1 Bar Chart
-* ✅ Student Performance Analyzer Project
-* ✅ GitHub Upload with README
-
----
-
-# ⏰ Recommended Time Allocation
-
-| Activity                     | Time       |
-| ---------------------------- | ---------- |
-| Learning Statistics Concepts | 2 Hours    |
-| Coding Practice              | 2–3 Hours  |
-| Revision                     | 30 Minutes |
-| GitHub Documentation         | 30 Minutes |
-
----
-
-# 🧠 AI Engineer Insight
-
-Most Machine Learning algorithms rely heavily on statistics.
-
-Understanding:
-
-* Mean
-* Variance
-* Probability
-* Correlation
-* Distribution
-
-will make concepts like:
-
-* Linear Regression
-* Logistic Regression
-* Naive Bayes
-* Neural Networks
-
-much easier to understand.
-
----
-
-# 🚀 Next Step
-
-After completing Day 12, you'll be ready for:
-
-## Day 13 — Linear Regression
-
-Your first real Machine Learning model 🎉
+**Day 13: Object-Oriented Programming (OOP) Part 1**
+- Classes
+- Objects
+- Constructors
+- Instance Variables
+- Methods
+- Student Management System Project
