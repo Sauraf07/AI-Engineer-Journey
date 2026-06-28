@@ -1,0 +1,27 @@
+Task 2: Solve 15 Easy DSA Problems
+Topics
+Arrays
+Strings
+Hash Maps
+Two Pointers
+Basic Math
+Problems
+Two Sum
+Valid Anagram
+Contains Duplicate
+Move Zeroes
+Best Time to Buy and Sell Stock
+Valid Palindrome
+Remove Duplicates from Sorted Array
+Merge Sorted Arrays
+Missing Number
+Intersection of Two Arrays
+Plus One
+Majority Element
+Single Number
+Find All Numbers Disappeared in an Array
+Binary Search
+Learning Outcome
+Learn common interview patterns.
+Improve algorithmic thinking.
+Write optimized solutions.

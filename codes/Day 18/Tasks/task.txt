@@ -1,0 +1,29 @@
+Task 1: Solve 15 Easy Python Problems
+Topics
+Variables
+Loops
+Conditionals
+Functions
+Lists
+Strings
+Dictionaries
+Problems
+Find the largest of three numbers.
+Check if a number is even or odd.
+Find the factorial of a number.
+Print the Fibonacci series up to n terms.
+Check if a number is prime.
+Reverse a string.
+Count vowels in a string.
+Find the second largest number in a list.
+Remove duplicate elements from a list.
+Find the frequency of each character in a string.
+Check whether a string is a palindrome.
+Find the maximum and minimum elements in a list.
+Calculate the sum of all even numbers in a list.
+Merge two dictionaries.
+Count the occurrence of each word in a sentence.
+Learning Outcome
+Strengthen Python fundamentals.
+Improve logical thinking.
+Learn to break problems into smaller steps.

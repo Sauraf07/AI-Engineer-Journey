@@ -1,0 +1,25 @@
+Task 3: Time & Space Complexity Analysis
+
+For every problem solved in Tasks 1 and 2, write down:
+
+Time Complexity
+Space Complexity
+Can it be optimized further?
+What data structure is used?
+Example
+Problem: Two Sum
+
+Approach:
+Hash Map
+
+Time Complexity:
+O(n)
+
+Space Complexity:
+O(n)
+
+Optimization:
+Already optimal
+Learning Outcome
+Develop the habit of analyzing solutions.
+Prepare for technical interviews where complexity is frequently discussed.

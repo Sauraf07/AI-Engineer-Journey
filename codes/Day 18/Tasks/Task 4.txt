@@ -1,0 +1,30 @@
+Task 4: Build a Python Coding Notebook
+
+Create a folder named:
+
+Day-18-Problem-Solving/
+
+Inside it, organize your solutions:
+
+Day-18-Problem-Solving/
+│
+├── Python-Problems/
+│   ├── 01_largest_of_three.py
+│   ├── 02_even_or_odd.py
+│   ├── ...
+│
+├── DSA-Problems/
+│   ├── 01_two_sum.py
+│   ├── 02_valid_anagram.py
+│   ├── ...
+│
+└── README.md
+In the README include
+Problem Name
+Approach
+Time Complexity
+Space Complexity
+What you learned
+Learning Outcome
+Create a well-organized GitHub repository.
+Build a portfolio of solved problems for interview preparation.

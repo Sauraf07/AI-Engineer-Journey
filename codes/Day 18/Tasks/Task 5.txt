@@ -1,0 +1,46 @@
+Task 5: Mock Coding Interview
+
+Set a timer for 60 minutes.
+
+Rules:
+
+Pick any 5 problems from today's list.
+Solve them without using AI or looking at solutions.
+After finishing, review your code and improve readability.
+
+For each problem, ask yourself:
+
+Did I understand the problem correctly?
+Could I solve it without hints?
+Is my solution efficient?
+Can I explain it to someone else?
+Scoring
+Criteria	Score
+Correctness	10
+Code Readability	10
+Time Complexity	10
+Space Complexity	10
+Explanation	10
+
+Target Score: 40+/50
+
+Bonus Challenge (Optional)
+
+Solve 5 Medium-Level problems:
+
+Longest Substring Without Repeating Characters
+Group Anagrams
+Product of Array Except Self
+Top K Frequent Elements
+Longest Consecutive Sequence
+Interview Questions
+What is the difference between a list and a tuple?
+When would you use a dictionary instead of a list?
+Explain the Two Pointer technique.
+What is a Hash Map, and why is it useful?
+What is the difference between == and is in Python?
+What are time and space complexity?
+Why is Binary Search faster than Linear Search?
+What makes a solution optimal?
+What are mutable and immutable data types?
+How would you debug a failing coding solution?
