@@ -1,0 +1,1083 @@
+# 📊 Day 36 – SQL GROUP BY & HAVING
+
+> **Phase 2: Data & SQL**
+> **Roadmap:** AI/ML Engineer → Generative AI Engineer → Agentic AI Engineer
+> **Day:** 36
+> **Topic:** SQL `GROUP BY` and `HAVING`
+
+---
+
+# 🎯 Learning Objectives
+
+By the end of Day 36, you will be able to:
+
+* Understand what `GROUP BY` is
+* Understand why grouping data is important
+* Use `GROUP BY` with aggregate functions
+* Use `COUNT()`, `SUM()`, `AVG()`, `MIN()`, and `MAX()`
+* Understand the difference between `WHERE` and `HAVING`
+* Filter grouped data using `HAVING`
+* Group data using multiple columns
+* Write real-world analytical SQL queries
+* Solve common SQL interview questions
+* Build a small Sales Analysis project using SQL
+
+---
+
+# 📌 What is GROUP BY in SQL?
+
+The `GROUP BY` statement is used to organize rows that have the same values into groups.
+
+It is commonly used with aggregate functions such as:
+
+* `COUNT()`
+* `SUM()`
+* `AVG()`
+* `MIN()`
+* `MAX()`
+
+---
+
+# 🌍 Real-Life Example
+
+Imagine you have an e-commerce company.
+
+Your database contains thousands of orders.
+
+You want to answer questions like:
+
+* How many orders came from each city?
+* What is the total revenue from each city?
+* Which category generates the most revenue?
+* What is the average order value for each category?
+* Which customers placed more than 5 orders?
+
+This is where `GROUP BY` becomes extremely useful.
+
+---
+
+# 🗃️ Sample Database
+
+Throughout this README, we will use the following table.
+
+## `sales`
+
+| id | customer_name | city   | category | amount |
+| -- | ------------- | ------ | -------- | -----: |
+| 1  | Rahul         | Indore | Laptop   |  50000 |
+| 2  | Aman          | Delhi  | Mobile   |  20000 |
+| 3  | Priya         | Indore | Mobile   |  25000 |
+| 4  | Neha          | Mumbai | Laptop   |  60000 |
+| 5  | Rahul         | Indore | Mobile   |  15000 |
+| 6  | Aman          | Delhi  | Laptop   |  55000 |
+| 7  | Priya         | Indore | Laptop   |  45000 |
+| 8  | Neha          | Mumbai | Mobile   |  30000 |
+
+---
+
+# 🛠️ Create the Table
+
+```sql
+CREATE TABLE sales (
+    id INT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    city VARCHAR(100),
+    category VARCHAR(100),
+    amount DECIMAL(10, 2)
+);
+```
+
+---
+
+# 📥 Insert Sample Data
+
+```sql
+INSERT INTO sales
+(id, customer_name, city, category, amount)
+VALUES
+(1, 'Rahul', 'Indore', 'Laptop', 50000),
+(2, 'Aman', 'Delhi', 'Mobile', 20000),
+(3, 'Priya', 'Indore', 'Mobile', 25000),
+(4, 'Neha', 'Mumbai', 'Laptop', 60000),
+(5, 'Rahul', 'Indore', 'Mobile', 15000),
+(6, 'Aman', 'Delhi', 'Laptop', 55000),
+(7, 'Priya', 'Indore', 'Laptop', 45000),
+(8, 'Neha', 'Mumbai', 'Mobile', 30000);
+```
+
+---
+
+# 1️⃣ Basic GROUP BY Syntax
+
+```sql
+SELECT column_name, aggregate_function(column_name)
+FROM table_name
+GROUP BY column_name;
+```
+
+Example:
+
+```sql
+SELECT city, COUNT(*)
+FROM sales
+GROUP BY city;
+```
+
+This groups all records according to their city.
+
+Possible result:
+
+| city   | COUNT(*) |
+| ------ | -------: |
+| Delhi  |        2 |
+| Indore |        4 |
+| Mumbai |        2 |
+
+---
+
+# 2️⃣ GROUP BY with COUNT()
+
+`COUNT()` counts the number of rows in each group.
+
+## Example
+
+Find the number of sales from each city.
+
+```sql
+SELECT city, COUNT(*) AS total_sales
+FROM sales
+GROUP BY city;
+```
+
+Result:
+
+| city   | total_sales |
+| ------ | ----------: |
+| Delhi  |           2 |
+| Indore |           4 |
+| Mumbai |           2 |
+
+---
+
+# 3️⃣ GROUP BY with SUM()
+
+`SUM()` calculates the total value for each group.
+
+## Example
+
+Find total sales revenue for each city.
+
+```sql
+SELECT city, SUM(amount) AS total_revenue
+FROM sales
+GROUP BY city;
+```
+
+Possible result:
+
+| city   | total_revenue |
+| ------ | ------------: |
+| Delhi  |         75000 |
+| Indore |        135000 |
+| Mumbai |         90000 |
+
+---
+
+# 4️⃣ GROUP BY with AVG()
+
+`AVG()` calculates the average value of each group.
+
+## Example
+
+Find the average sale amount for each city.
+
+```sql
+SELECT city, AVG(amount) AS average_sale
+FROM sales
+GROUP BY city;
+```
+
+---
+
+# 5️⃣ GROUP BY with MIN()
+
+Find the minimum sale amount from each city.
+
+```sql
+SELECT city, MIN(amount) AS minimum_sale
+FROM sales
+GROUP BY city;
+```
+
+---
+
+# 6️⃣ GROUP BY with MAX()
+
+Find the highest sale amount from each city.
+
+```sql
+SELECT city, MAX(amount) AS highest_sale
+FROM sales
+GROUP BY city;
+```
+
+---
+
+# 🔥 Multiple Aggregate Functions
+
+You can use multiple aggregate functions in a single query.
+
+```sql
+SELECT
+    city,
+    COUNT(*) AS total_orders,
+    SUM(amount) AS total_revenue,
+    AVG(amount) AS average_order,
+    MIN(amount) AS minimum_order,
+    MAX(amount) AS maximum_order
+FROM sales
+GROUP BY city;
+```
+
+This gives a complete sales summary for every city.
+
+---
+
+# 7️⃣ GROUP BY Category
+
+You are not limited to grouping by city.
+
+You can group by any suitable column.
+
+## Example
+
+Find total revenue generated by each product category.
+
+```sql
+SELECT
+    category,
+    SUM(amount) AS total_revenue
+FROM sales
+GROUP BY category;
+```
+
+---
+
+# 8️⃣ GROUP BY Multiple Columns
+
+SQL allows grouping using multiple columns.
+
+## Example
+
+Find total sales for each category in each city.
+
+```sql
+SELECT
+    city,
+    category,
+    SUM(amount) AS total_sales
+FROM sales
+GROUP BY city, category;
+```
+
+The grouping happens based on unique combinations of:
+
+```text
+City + Category
+```
+
+For example:
+
+```text
+Indore + Laptop
+Indore + Mobile
+Delhi + Laptop
+Delhi + Mobile
+Mumbai + Laptop
+Mumbai + Mobile
+```
+
+---
+
+# 🔍 What is HAVING?
+
+`HAVING` is used to filter grouped results.
+
+Think of it like this:
+
+```text
+WHERE  → Filters rows
+HAVING → Filters groups
+```
+
+---
+
+# 9️⃣ Basic HAVING Example
+
+Suppose we want cities where total revenue is greater than ₹80,000.
+
+```sql
+SELECT
+    city,
+    SUM(amount) AS total_revenue
+FROM sales
+GROUP BY city
+HAVING SUM(amount) > 80000;
+```
+
+Only cities whose total revenue exceeds ₹80,000 will be returned.
+
+---
+
+# 🔥 WHERE vs HAVING
+
+This is one of the most common SQL interview questions.
+
+| Feature             | WHERE            | HAVING                 |
+| ------------------- | ---------------- | ---------------------- |
+| Filters             | Individual rows  | Groups                 |
+| Used before         | GROUP BY         | After GROUP BY         |
+| Aggregate functions | Usually not used | Commonly used          |
+| Purpose             | Filter raw data  | Filter aggregated data |
+
+---
+
+# Example of WHERE
+
+Find sales where amount is greater than ₹20,000.
+
+```sql
+SELECT *
+FROM sales
+WHERE amount > 20000;
+```
+
+---
+
+# Example of HAVING
+
+Find cities whose total revenue is greater than ₹80,000.
+
+```sql
+SELECT
+    city,
+    SUM(amount)
+FROM sales
+GROUP BY city
+HAVING SUM(amount) > 80000;
+```
+
+---
+
+# 🔥 WHERE + GROUP BY + HAVING
+
+You can use all three together.
+
+```sql
+SELECT
+    city,
+    SUM(amount) AS total_revenue
+FROM sales
+WHERE amount > 20000
+GROUP BY city
+HAVING SUM(amount) > 50000;
+```
+
+Execution conceptually happens like:
+
+```text
+FROM
+ ↓
+WHERE
+ ↓
+GROUP BY
+ ↓
+HAVING
+ ↓
+SELECT
+ ↓
+ORDER BY
+```
+
+---
+
+# 🔟 GROUP BY with ORDER BY
+
+You can sort grouped results.
+
+## Example
+
+Find cities ordered by highest revenue.
+
+```sql
+SELECT
+    city,
+    SUM(amount) AS total_revenue
+FROM sales
+GROUP BY city
+ORDER BY total_revenue DESC;
+```
+
+---
+
+# 🏆 Find the Highest Revenue City
+
+```sql
+SELECT
+    city,
+    SUM(amount) AS total_revenue
+FROM sales
+GROUP BY city
+ORDER BY total_revenue DESC
+LIMIT 1;
+```
+
+---
+
+# 👥 Customer Purchase Analysis
+
+Find how much each customer has spent.
+
+```sql
+SELECT
+    customer_name,
+    SUM(amount) AS total_spent
+FROM sales
+GROUP BY customer_name;
+```
+
+---
+
+# 💰 Find High-Value Customers
+
+Find customers who spent more than ₹50,000.
+
+```sql
+SELECT
+    customer_name,
+    SUM(amount) AS total_spent
+FROM sales
+GROUP BY customer_name
+HAVING SUM(amount) > 50000;
+```
+
+---
+
+# 📦 Find Popular Categories
+
+Count the number of purchases in each category.
+
+```sql
+SELECT
+    category,
+    COUNT(*) AS total_purchases
+FROM sales
+GROUP BY category;
+```
+
+---
+
+# 🧠 Real-World Industry Use Cases
+
+## E-commerce
+
+```sql
+SELECT
+    category,
+    SUM(amount) AS revenue
+FROM sales
+GROUP BY category;
+```
+
+Used to identify the highest-revenue product categories.
+
+---
+
+## Banking
+
+```sql
+SELECT
+    account_type,
+    AVG(balance)
+FROM accounts
+GROUP BY account_type;
+```
+
+Used to analyze average balances.
+
+---
+
+## HR Analytics
+
+```sql
+SELECT
+    department,
+    AVG(salary)
+FROM employees
+GROUP BY department;
+```
+
+Used to calculate average salary by department.
+
+---
+
+## AI/ML Data Analysis
+
+Before training a machine learning model, data analysts and ML engineers often explore datasets using aggregation.
+
+Example:
+
+```sql
+SELECT
+    customer_segment,
+    AVG(purchase_amount)
+FROM customer_data
+GROUP BY customer_segment;
+```
+
+This can help understand customer behavior before feature engineering and modeling.
+
+---
+
+# ⚠️ Common Mistakes
+
+## Mistake 1: Selecting Non-Grouped Columns
+
+Incorrect:
+
+```sql
+SELECT city, customer_name, SUM(amount)
+FROM sales
+GROUP BY city;
+```
+
+`customer_name` is neither grouped nor aggregated.
+
+Better:
+
+```sql
+SELECT city, SUM(amount)
+FROM sales
+GROUP BY city;
+```
+
+---
+
+## Mistake 2: Using WHERE with Aggregate Functions
+
+Incorrect:
+
+```sql
+SELECT city, SUM(amount)
+FROM sales
+WHERE SUM(amount) > 50000
+GROUP BY city;
+```
+
+Correct:
+
+```sql
+SELECT city, SUM(amount)
+FROM sales
+GROUP BY city
+HAVING SUM(amount) > 50000;
+```
+
+---
+
+## Mistake 3: Confusing WHERE and HAVING
+
+Remember:
+
+```text
+WHERE  = Before Grouping
+HAVING = After Grouping
+```
+
+---
+
+# 🧪 Practice Questions
+
+## Beginner Level
+
+1. Count total orders from each city.
+2. Calculate total revenue from each city.
+3. Calculate average sales from each city.
+4. Find minimum sale from each city.
+5. Find maximum sale from each city.
+6. Count orders for each category.
+7. Calculate total revenue for each category.
+
+---
+
+## Intermediate Level
+
+8. Find cities with revenue greater than ₹50,000.
+9. Find customers who made more than one purchase.
+10. Find categories with average order value greater than ₹25,000.
+11. Find the highest revenue city.
+12. Find the lowest revenue city.
+13. Find total revenue by city and category.
+14. Sort cities by total revenue.
+
+---
+
+## Advanced Level
+
+15. Find the top-performing product category.
+16. Find customers whose total spending is above the average customer spending.
+17. Find the city with the highest average order value.
+18. Find categories with more than three orders.
+19. Find customers who purchased from multiple categories.
+20. Create a complete sales analytics report using aggregation.
+
+---
+
+# 💻 Mini Project – Sales Analytics System
+
+## Objective
+
+Create a SQL-based Sales Analytics System.
+
+The system should answer:
+
+* Total number of sales
+* Total revenue
+* Average order value
+* Highest order
+* Lowest order
+* Revenue by city
+* Revenue by category
+* Orders by customer
+* Highest spending customer
+* Highest revenue city
+* Highest revenue category
+
+---
+
+# Query 1 – Total Sales
+
+```sql
+SELECT COUNT(*) AS total_sales
+FROM sales;
+```
+
+---
+
+# Query 2 – Total Revenue
+
+```sql
+SELECT SUM(amount) AS total_revenue
+FROM sales;
+```
+
+---
+
+# Query 3 – Average Order Value
+
+```sql
+SELECT AVG(amount) AS average_order
+FROM sales;
+```
+
+---
+
+# Query 4 – Revenue by City
+
+```sql
+SELECT
+    city,
+    SUM(amount) AS revenue
+FROM sales
+GROUP BY city
+ORDER BY revenue DESC;
+```
+
+---
+
+# Query 5 – Revenue by Category
+
+```sql
+SELECT
+    category,
+    SUM(amount) AS revenue
+FROM sales
+GROUP BY category
+ORDER BY revenue DESC;
+```
+
+---
+
+# Query 6 – Customer Spending
+
+```sql
+SELECT
+    customer_name,
+    SUM(amount) AS total_spent
+FROM sales
+GROUP BY customer_name
+ORDER BY total_spent DESC;
+```
+
+---
+
+# Query 7 – High-Value Customers
+
+```sql
+SELECT
+    customer_name,
+    SUM(amount) AS total_spent
+FROM sales
+GROUP BY customer_name
+HAVING SUM(amount) > 50000
+ORDER BY total_spent DESC;
+```
+
+---
+
+# 🎤 SQL Interview Questions
+
+## 1. What is GROUP BY?
+
+`GROUP BY` groups rows with identical values in specified columns so aggregate functions can be applied to each group.
+
+---
+
+## 2. Why is GROUP BY used?
+
+It is commonly used for:
+
+* Counting records
+* Calculating totals
+* Finding averages
+* Finding minimum values
+* Finding maximum values
+
+---
+
+## 3. What is HAVING?
+
+`HAVING` filters grouped or aggregated results.
+
+---
+
+## 4. What is the difference between WHERE and HAVING?
+
+`WHERE` filters individual rows before grouping.
+
+`HAVING` filters groups after aggregation.
+
+---
+
+## 5. Can we use WHERE and HAVING together?
+
+Yes.
+
+```sql
+SELECT
+    city,
+    SUM(amount)
+FROM sales
+WHERE amount > 10000
+GROUP BY city
+HAVING SUM(amount) > 50000;
+```
+
+---
+
+## 6. Can GROUP BY use multiple columns?
+
+Yes.
+
+```sql
+SELECT
+    city,
+    category,
+    SUM(amount)
+FROM sales
+GROUP BY city, category;
+```
+
+---
+
+## 7. Which aggregate functions are commonly used with GROUP BY?
+
+* `COUNT()`
+* `SUM()`
+* `AVG()`
+* `MIN()`
+* `MAX()`
+
+---
+
+## 8. Can HAVING be used with aggregate functions?
+
+Yes.
+
+Example:
+
+```sql
+HAVING COUNT(*) > 5
+```
+
+---
+
+## 9. What is the difference between GROUP BY and ORDER BY?
+
+`GROUP BY` groups records.
+
+`ORDER BY` sorts results.
+
+---
+
+## 10. Can GROUP BY and ORDER BY be used together?
+
+Yes.
+
+```sql
+SELECT
+    city,
+    SUM(amount) AS revenue
+FROM sales
+GROUP BY city
+ORDER BY revenue DESC;
+```
+
+---
+
+## 11. What is the logical execution order of a SQL query?
+
+A simplified logical order is:
+
+```text
+FROM
+WHERE
+GROUP BY
+HAVING
+SELECT
+ORDER BY
+LIMIT
+```
+
+---
+
+## 12. Why can't WHERE normally filter aggregate results?
+
+Because `WHERE` is logically processed before grouping and aggregation.
+
+To filter aggregate results, use `HAVING`.
+
+---
+
+## 13. Write a query to find departments with more than 10 employees.
+
+```sql
+SELECT
+    department,
+    COUNT(*) AS employee_count
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 10;
+```
+
+---
+
+## 14. Write a query to find average salary by department.
+
+```sql
+SELECT
+    department,
+    AVG(salary) AS average_salary
+FROM employees
+GROUP BY department;
+```
+
+---
+
+## 15. Write a query to find the department with the highest average salary.
+
+```sql
+SELECT
+    department,
+    AVG(salary) AS average_salary
+FROM employees
+GROUP BY department
+ORDER BY average_salary DESC
+LIMIT 1;
+```
+
+---
+
+# 📌 Quick Revision Cheat Sheet
+
+```sql
+-- Count by group
+
+SELECT city, COUNT(*)
+FROM sales
+GROUP BY city;
+
+
+-- Sum by group
+
+SELECT city, SUM(amount)
+FROM sales
+GROUP BY city;
+
+
+-- Average by group
+
+SELECT city, AVG(amount)
+FROM sales
+GROUP BY city;
+
+
+-- Multiple groups
+
+SELECT city, category, SUM(amount)
+FROM sales
+GROUP BY city, category;
+
+
+-- Filter rows
+
+SELECT city, SUM(amount)
+FROM sales
+WHERE amount > 10000
+GROUP BY city;
+
+
+-- Filter groups
+
+SELECT city, SUM(amount)
+FROM sales
+GROUP BY city
+HAVING SUM(amount) > 50000;
+
+
+-- Sort groups
+
+SELECT city, SUM(amount) AS revenue
+FROM sales
+GROUP BY city
+ORDER BY revenue DESC;
+```
+
+---
+
+# 📝 Day 36 Assignment
+
+Complete the following:
+
+* [ ] Create the `sales` table
+* [ ] Insert at least 20 records
+* [ ] Write 5 `COUNT()` queries
+* [ ] Write 5 `SUM()` queries
+* [ ] Write 5 `AVG()` queries
+* [ ] Write 5 `GROUP BY` queries
+* [ ] Write 5 `HAVING` queries
+* [ ] Write 5 `WHERE + GROUP BY + HAVING` queries
+* [ ] Complete the Sales Analytics Mini Project
+* [ ] Solve all interview questions
+* [ ] Push everything to GitHub
+
+---
+
+# 📁 Recommended Folder Structure
+
+```text
+Day-36-SQL-GroupBy-Having/
+│
+├── README.md
+│
+├── database/
+│   └── create_database.sql
+│
+├── queries/
+│   ├── group_by.sql
+│   ├── having.sql
+│   └── practice.sql
+│
+├── project/
+│   └── sales_analytics.sql
+│
+└── interview-questions/
+    └── interview_questions.md
+```
+
+---
+
+# 🚀 GitHub Commands
+
+```bash
+git add .
+
+git commit -m "Day 36: Learned SQL GROUP BY and HAVING"
+
+git push origin main
+```
+
+---
+
+# 🏆 Day 36 Milestone
+
+By completing Day 36, you should now understand how to transform raw database records into meaningful business insights using SQL.
+
+You can now answer questions such as:
+
+> Which city generates the most revenue?
+
+> Which customer spends the most money?
+
+> Which product category performs best?
+
+> Which groups meet specific business conditions?
+
+These analytical skills will become extremely important when working with:
+
+* Data Analysis
+* Pandas
+* Machine Learning
+* Feature Engineering
+* AI Applications
+* Business Intelligence
+
+---
+
+# 📚 Day 36 Summary
+
+Today you learned:
+
+* `GROUP BY`
+* `HAVING`
+* `WHERE` vs `HAVING`
+* `GROUP BY` with `COUNT()`
+* `GROUP BY` with `SUM()`
+* `GROUP BY` with `AVG()`
+* `GROUP BY` with `MIN()`
+* `GROUP BY` with `MAX()`
+* Multiple-column grouping
+* Filtering grouped data
+* Sorting aggregated results
+* Real-world SQL analytics
+* SQL interview questions
+
+---
+
+# 🔜 Next Step
+
+## Day 37 – SQL JOINs
+
+Next, learn one of the **most important SQL topics for Data, ML, Backend, and AI Engineers**:
+
+* INNER JOIN
+* LEFT JOIN
+* RIGHT JOIN
+* FULL OUTER JOIN
+* SELF JOIN
+* CROSS JOIN
+* Joining Multiple Tables
+* Real-world Database Relationships
+* JOIN Interview Questions
+
+> **Keep Learning. Keep Building. Keep Shipping. 🚀**
